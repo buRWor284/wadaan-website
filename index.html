@@ -1,789 +1,367 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Wadaan – The Web Development Network | Archive 2004–2007</title>
-  <style>
-    /* ── Reset & base ── */
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wadaan – The Web Development Network (2004–2007)</title>
+<meta name="description" content="Archived site of Wadaan – The Web Development Network, a web design and development company active from April 2004 to 2007 in Västerås, Sweden.">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=IBM+Plex+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; }
+body { margin: 0; padding: 0; background: #0b0a08; color: #f0ede6; font-family: 'IBM Plex Mono', monospace; }
+a { color: #e8a000; text-decoration: none; }
+a:hover { text-decoration: underline; }
 
-    :root {
-      --ink:       #1a1a1a;
-      --muted:     #555;
-      --faint:     #888;
-      --border:    #ddd;
-      --bg:        #faf9f7;
-      --card:      #ffffff;
-      --accent:    #1a4f8a;   /* deep navy – period-appropriate corporate blue */
-      --accent2:   #c0392b;   /* warm red for dates / highlights */
-      --tag-bg:    #eef3f9;
-      --tag-txt:   #1a4f8a;
-      --mono:      "Courier New", Courier, monospace;
-      --sans:      Georgia, "Times New Roman", serif;
-    }
-
-    html { scroll-behavior: smooth; }
-
-    body {
-      font-family: var(--sans);
-      background: var(--bg);
-      color: var(--ink);
-      line-height: 1.7;
-      font-size: 17px;
-    }
-
-    a { color: var(--accent); text-decoration: none; }
-    a:hover { text-decoration: underline; }
-
-    /* ── Archive ribbon ── */
-    .archive-ribbon {
-      background: #2c2c2c;
-      color: #ccc;
-      text-align: center;
-      font-size: 12px;
-      letter-spacing: 0.08em;
-      padding: 8px 16px;
-      font-family: var(--mono);
-    }
-    .archive-ribbon strong { color: #e8e8e8; }
-
-    /* ── Header ── */
-    header {
-      background: var(--accent);
-      color: #fff;
-      padding: 48px 24px 40px;
-      text-align: center;
-    }
-
-    .site-name {
-      font-size: clamp(28px, 5vw, 52px);
-      font-weight: normal;
-      letter-spacing: -0.5px;
-      line-height: 1.15;
-    }
-
-    .site-name span {
-      display: block;
-      font-size: 0.45em;
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.65);
-      margin-top: 6px;
-    }
-
-    .header-meta {
-      margin-top: 18px;
-      font-size: 14px;
-      color: rgba(255,255,255,0.6);
-      letter-spacing: 0.05em;
-    }
-
-    .header-tagline {
-      margin-top: 10px;
-      font-size: 17px;
-      color: rgba(255,255,255,0.85);
-      font-style: italic;
-      max-width: 620px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    /* ── Nav ── */
-    nav {
-      background: #163d6e;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 0;
-    }
-
-    nav a {
-      color: rgba(255,255,255,0.75);
-      font-family: sans-serif;
-      font-size: 13px;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      padding: 12px 22px;
-      display: block;
-    }
-
-    nav a:hover {
-      background: rgba(255,255,255,0.08);
-      color: #fff;
-      text-decoration: none;
-    }
-
-    /* ── Layout ── */
-    .container {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 0 24px;
-    }
-
-    section {
-      padding: 56px 0 48px;
-      border-bottom: 1px solid var(--border);
-    }
-
-    section:last-of-type { border-bottom: none; }
-
-    .section-label {
-      font-family: sans-serif;
-      font-size: 11px;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--accent2);
-      margin-bottom: 10px;
-    }
-
-    h2 {
-      font-size: clamp(20px, 3vw, 28px);
-      font-weight: normal;
-      color: var(--accent);
-      margin-bottom: 20px;
-      line-height: 1.25;
-    }
-
-    h3 {
-      font-size: 18px;
-      font-weight: normal;
-      color: var(--ink);
-      margin-bottom: 8px;
-    }
-
-    p { margin-bottom: 14px; color: var(--ink); }
-    p:last-child { margin-bottom: 0; }
-
-    /* ── About section ── */
-    .about-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 32px;
-      margin-top: 28px;
-    }
-
-    @media (max-width: 600px) {
-      .about-grid { grid-template-columns: 1fr; }
-    }
-
-    .about-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 4px;
-      padding: 24px;
-    }
-
-    .about-card h3 {
-      font-family: sans-serif;
-      font-size: 12px;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--faint);
-      margin-bottom: 12px;
-    }
-
-    .about-card ul {
-      padding-left: 18px;
-    }
-
-    .about-card ul li {
-      margin-bottom: 5px;
-      font-size: 15px;
-    }
-
-    .founding-quote {
-      margin-top: 24px;
-      border-left: 3px solid var(--accent);
-      padding: 16px 20px;
-      background: var(--tag-bg);
-      font-style: italic;
-      color: var(--ink);
-      font-size: 16px;
-    }
-
-    .founding-quote cite {
-      display: block;
-      margin-top: 8px;
-      font-size: 12px;
-      font-style: normal;
-      color: var(--faint);
-      font-family: sans-serif;
-      letter-spacing: 0.05em;
-    }
-
-    /* ── Portfolio ── */
-    .portfolio-intro { margin-bottom: 28px; font-size: 15px; color: var(--muted); }
-
-    .portfolio-category { margin-bottom: 36px; }
-
-    .cat-header {
-      display: flex;
-      align-items: baseline;
-      gap: 12px;
-      margin-bottom: 14px;
-      padding-bottom: 8px;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .cat-header h3 {
-      font-size: 16px;
-      color: var(--ink);
-    }
-
-    .cat-count {
-      font-family: sans-serif;
-      font-size: 11px;
-      color: var(--faint);
-    }
-
-    .client-grid {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
-
-    .client-tag {
-      background: var(--tag-bg);
-      color: var(--tag-txt);
-      font-family: sans-serif;
-      font-size: 13px;
-      padding: 4px 11px;
-      border-radius: 3px;
-      border: 1px solid #c8d9ef;
-    }
-
-    /* ── Blog / News ── */
-    .post {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 4px;
-      padding: 28px 28px 24px;
-      margin-bottom: 20px;
-    }
-
-    .post-date {
-      font-family: sans-serif;
-      font-size: 11px;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--accent2);
-      margin-bottom: 8px;
-    }
-
-    .post h3 {
-      font-size: 20px;
-      color: var(--accent);
-      margin-bottom: 12px;
-    }
-
-    .post p { font-size: 15px; color: var(--muted); }
-
-    .post-url {
-      display: inline-block;
-      margin-top: 10px;
-      font-family: var(--mono);
-      font-size: 12px;
-      color: var(--faint);
-    }
-
-    /* ── Products / Templates ── */
-    .products-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 20px;
-      margin-top: 24px;
-    }
-
-    @media (max-width: 600px) {
-      .products-grid { grid-template-columns: 1fr; }
-    }
-
-    .product-block {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 4px;
-      padding: 20px 22px;
-    }
-
-    .product-block h3 {
-      font-family: sans-serif;
-      font-size: 13px;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 10px;
-    }
-
-    .product-block ul {
-      padding-left: 16px;
-      font-size: 14px;
-      color: var(--muted);
-    }
-
-    .product-block ul li { margin-bottom: 4px; }
-
-    /* ── Tech stack ── */
-    .tech-pills {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 20px;
-    }
-
-    .tech-pill {
-      background: #2c2c2c;
-      color: #d4d4d4;
-      font-family: var(--mono);
-      font-size: 12px;
-      padding: 4px 11px;
-      border-radius: 3px;
-    }
-
-    /* ── Contact ── */
-    .contact-block {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 4px;
-      padding: 28px;
-      margin-top: 24px;
-      display: flex;
-      gap: 48px;
-      flex-wrap: wrap;
-    }
-
-    .contact-field {
-      font-family: sans-serif;
-    }
-
-    .contact-label {
-      font-size: 11px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--faint);
-      margin-bottom: 4px;
-    }
-
-    .contact-value {
-      font-size: 15px;
-      color: var(--ink);
-    }
-
-    /* ── Timeline ── */
-    .timeline { margin-top: 24px; }
-
-    .timeline-item {
-      display: flex;
-      gap: 20px;
-      margin-bottom: 20px;
-    }
-
-    .timeline-year {
-      font-family: var(--mono);
-      font-size: 13px;
-      color: var(--accent2);
-      white-space: nowrap;
-      padding-top: 2px;
-      min-width: 50px;
-    }
-
-    .timeline-text {
-      font-size: 15px;
-      color: var(--muted);
-    }
-
-    /* ── Footer ── */
-    footer {
-      background: #1a1a1a;
-      color: #555;
-      text-align: center;
-      padding: 36px 24px;
-      font-family: sans-serif;
-      font-size: 12px;
-      letter-spacing: 0.05em;
-    }
-
-    footer strong { color: #888; }
-
-    .wayback-note {
-      margin-top: 12px;
-      font-size: 11px;
-      color: #444;
-    }
-
-    .wayback-note a { color: #666; }
-  </style>
+@media (max-width: 1024px) {
+  .section-gutter { display: none !important; }
+  .section-content { padding-left: 32px !important; }
+}
+@media (max-width: 768px) {
+  .periodic-grid { grid-template-columns: repeat(4, 1fr) !important; }
+  .about-cols { flex-direction: column !important; }
+  .about-sidebar { width: 100% !important; }
+  .products-grid { grid-template-columns: 1fr 1fr !important; }
+  .news-grid { grid-template-columns: 1fr !important; }
+}
+@media (max-width: 480px) {
+  .periodic-grid { grid-template-columns: repeat(2, 1fr) !important; }
+  .contact-grid { grid-template-columns: 1fr !important; }
+  .nav-links { gap: 20px !important; }
+  .hero-pad { padding: 40px 24px 32px !important; }
+  .section-pad { padding: 0 24px !important; }
+  .footer-pad { padding: 24px 24px !important; }
+}
+</style>
 </head>
 <body>
 
-<!-- Archive ribbon -->
-<div class="archive-ribbon">
-  ⊡ &nbsp;<strong>ARCHIVE</strong> &nbsp;·&nbsp; This site preserves wadaan.net as it existed between 2004 and 2007 &nbsp;·&nbsp; Recovered via the Wayback Machine
+<!-- Archive bar -->
+<div style="background: #1a0800; border-bottom: 1px solid #ff3300; padding: 7px 32px; font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: #ff6633; display: flex; align-items: center; gap: 16px; letter-spacing: 1px;">
+  <span style="background: #ff3300; color: #fff; padding: 1px 6px; font-size: 9px; font-weight: 500; letter-spacing: 2px; flex-shrink: 0;">ARCHIVED</span>
+  <span style="color: #cc4400;">This site preserves wadaan.net as it existed between 2004–2007. Content recovered via the Internet Archive Wayback Machine.</span>
+  <span style="margin-left: auto; color: #441100; letter-spacing: 3px;">W-2004</span>
 </div>
 
-<!-- Header -->
-<header>
-  <div class="site-name">
-    Wadaan
-    <span>The Web Development Network</span>
-  </div>
-  <p class="header-tagline">Exquisite Web Development Solutionz @ Affordable Prices</p>
-  <p class="header-meta">Västerås, Sweden &nbsp;·&nbsp; Founded April 2004 &nbsp;·&nbsp; Active 2004–2007</p>
-</header>
-
-<!-- Navigation -->
-<nav>
-  <a href="#about">About</a>
-  <a href="#portfolio">Portfolio</a>
-  <a href="#blog">News &amp; Blog</a>
-  <a href="#products">Products</a>
-  <a href="#contact">Contact</a>
-</nav>
-
-<!-- ── ABOUT ── -->
-<section id="about">
-  <div class="container">
-    <p class="section-label">Who We Were</p>
-    <h2>About Wadaan</h2>
-
-    <p>Wadaan – The Web Development Network was a professional web design and development organisation based in Västerås, Sweden, providing web solutions to businesses all over the world. We created and managed websites that were not only aesthetically pleasing but also functionally superior.</p>
-
-    <p>Whatever clients were looking for — redesigning an existing website, from-scratch web application development, SEO, eCommerce, hosting or domain registration — Wadaan was there to help. For two years we built a reputation for creating a positive return on investment for our clients.</p>
-
-    <blockquote class="founding-quote">
-      "Equipped with creative minds, fast fingertips, and the latest technology, Wadaan takes great pride in diverse and exciting designs and dynamic web applications. From simple text &amp; graphics to more intricate designs, logos, and database-driven websites, Wadaan provides amazing services at very affordable prices."
-      <cite>— Welcome post, April 12, 2004 (founding day)</cite>
-    </blockquote>
-
-    <div class="about-grid">
-      <div class="about-card">
-        <h3>Services Offered</h3>
-        <ul>
-          <li>Website Design &amp; Development</li>
-          <li>Fully functional e-commerce sites</li>
-          <li>Website Maintenance</li>
-          <li>Content Management Solutions</li>
-          <li>Email Management Solutions</li>
-          <li>Project Management</li>
-          <li>Open Source Application Services</li>
-          <li>Custom Graphics Design</li>
-          <li>Multimedia &amp; Flash Design</li>
-          <li>Hosting &amp; Domain Registration</li>
-          <li>Search Engine Optimisation (SEO)</li>
-        </ul>
+<!-- Hero -->
+<div class="hero-pad" style="background: #0b0a08; padding: 64px 48px 48px; position: relative; overflow: hidden; border-bottom: 1px solid #1e1c18;">
+  <!-- Ghost year -->
+  <div style="position: absolute; right: -20px; top: 50%; transform: translateY(-50%); font-family: 'Bebas Neue', sans-serif; font-size: 320px; color: rgba(232,160,0,0.04); line-height: 1; pointer-events: none; user-select: none; letter-spacing: -8px;">2007</div>
+  <!-- Amber line -->
+  <div style="width: 48px; height: 2px; background: #e8a000; margin-bottom: 32px;"></div>
+  <div style="max-width: 1200px; margin: 0 auto;">
+    <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: #e8a000; letter-spacing: 6px; margin-bottom: 16px; opacity: 0.7;">DIGITAL SPECIMEN — CAT. NO. W-2004-2007 — VÄSTERÅS, SE</div>
+    <h1 style="font-family: 'Bebas Neue', sans-serif; font-size: clamp(96px, 18vw, 220px); color: #f0ede6; margin: 0; line-height: 0.85; letter-spacing: 4px;">WADAAN</h1>
+    <div style="display: flex; align-items: flex-end; justify-content: space-between; margin-top: 24px; padding-top: 20px; border-top: 1px solid #2a2825; flex-wrap: wrap; gap: 16px;">
+      <div>
+        <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: #6a6258; letter-spacing: 4px; text-transform: uppercase;">The Web Development Network</div>
+        <div style="font-family: 'Cormorant Garamond', Georgia, serif; font-size: 18px; font-style: italic; color: #e8a000; margin-top: 8px; letter-spacing: 0.5px;">"Exquisite Web Development Solutionz @ Affordable Prices"</div>
       </div>
-      <div class="about-card">
-        <h3>Timeline</h3>
-        <div class="timeline">
-          <div class="timeline-item">
-            <span class="timeline-year">Apr 2004</span>
-            <span class="timeline-text">Wadaan founded. First "Welcome" post published.</span>
+      <div style="text-align: right;">
+        <div style="font-family: 'Bebas Neue', sans-serif; font-size: 64px; color: #2a2825; line-height: 1; letter-spacing: 2px;">2004–2007</div>
+        <div style="font-family: 'IBM Plex Mono', monospace; font-size: 9px; color: #3a3830; letter-spacing: 3px; margin-top: 4px;">49 CLIENTS · 5 YEARS · 1 NETWORK</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Sticky Nav -->
+<div style="position: sticky; top: 0; z-index: 100; background: rgba(11,10,8,0.97); border-bottom: 2px solid #e8a000; padding: 0 48px; backdrop-filter: blur(12px);">
+  <div style="max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; height: 48px;">
+    <span style="font-family: 'Bebas Neue', sans-serif; font-size: 20px; color: #e8a000; letter-spacing: 4px;">W</span>
+    <div class="nav-links" style="display: flex; gap: 40px;">
+      <a href="#about"     style="font-size: 10px; color: #4a4840; letter-spacing: 3px; text-transform: uppercase;">01 / About</a>
+      <a href="#portfolio" style="font-size: 10px; color: #4a4840; letter-spacing: 3px; text-transform: uppercase;">02 / Portfolio</a>
+      <a href="#news"      style="font-size: 10px; color: #4a4840; letter-spacing: 3px; text-transform: uppercase;">03 / News</a>
+      <a href="#products"  style="font-size: 10px; color: #4a4840; letter-spacing: 3px; text-transform: uppercase;">04 / Products</a>
+      <a href="#contact"   style="font-size: 10px; color: #4a4840; letter-spacing: 3px; text-transform: uppercase;">05 / Contact</a>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ SECTION 01: ABOUT ═══ -->
+<div id="about" style="border-bottom: 1px solid #1e1c18;">
+  <div class="section-pad" style="max-width: 1200px; margin: 0 auto; padding: 0 48px;">
+
+    <div style="display: flex; align-items: stretch; border-bottom: 1px solid #1e1c18;">
+      <div class="section-gutter" style="width: 120px; flex-shrink: 0; border-right: 1px solid #1e1c18; padding: 24px 0; display: flex; align-items: flex-start;">
+        <span style="font-family: 'Bebas Neue', sans-serif; font-size: 72px; color: #1a1815; letter-spacing: 2px; line-height: 1;">01</span>
+      </div>
+      <div style="flex: 1; padding: 24px 0 24px 32px; display: flex; align-items: center; gap: 16px;">
+        <span style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: #e8a000; letter-spacing: 5px;">ABOUT</span>
+        <div style="flex: 1; height: 1px; background: linear-gradient(to right, #e8a00040, transparent);"></div>
+      </div>
+    </div>
+
+    <div style="display: flex; gap: 0; border-bottom: 1px solid #1e1c18;">
+      <div class="section-gutter" style="width: 120px; flex-shrink: 0; border-right: 1px solid #1e1c18;"></div>
+      <div class="section-content" style="flex: 1; padding: 48px 32px;">
+        <div class="about-cols" style="display: flex; gap: 48px; align-items: flex-start;">
+          <div style="flex: 1; min-width: 0;">
+            <h2 style="font-family: 'Bebas Neue', sans-serif; font-size: 64px; color: #f0ede6; margin: 0 0 32px; line-height: 0.9; letter-spacing: 2px;">WHO<br/>WE WERE</h2>
+            <p style="font-family: 'Cormorant Garamond', Georgia, serif; font-size: 18px; font-weight: 300; color: #a09888; line-height: 1.85; margin: 0 0 20px;">Wadaan – The Web Development Network was a professional web design and development organisation based in Västerås, Sweden, providing web solutions to businesses all over the world.</p>
+            <p style="font-family: 'Cormorant Garamond', Georgia, serif; font-size: 18px; font-weight: 300; color: #a09888; line-height: 1.85; margin: 0 0 36px;">Whatever clients were looking for — redesigning an existing website, from-scratch web application development, SEO, eCommerce, hosting or domain registration — Wadaan was there to help.</p>
+            <div style="border-left: 2px solid #e8a000; padding: 16px 24px; background: #141210;">
+              <p style="font-family: 'Cormorant Garamond', serif; font-size: 21px; font-style: italic; color: #d0c8b8; line-height: 1.65; margin: 0 0 12px;">"Equipped with creative minds, fast fingertips, and the latest technology, Wadaan takes great pride in diverse and exciting designs and dynamic web applications."</p>
+              <span style="font-family: 'IBM Plex Mono', monospace; font-size: 9px; color: #e8a000; letter-spacing: 2px; opacity: 0.7;">— WELCOME POST · APRIL 12, 2004</span>
+            </div>
           </div>
-          <div class="timeline-item">
-            <span class="timeline-year">Mar 2005</span>
-            <span class="timeline-text">Texas Poker Supply — first documented completed client project.</span>
-          </div>
-          <div class="timeline-item">
-            <span class="timeline-year">Apr 2005</span>
-            <span class="timeline-text">Florida Tickets e-commerce site delivered.</span>
-          </div>
-          <div class="timeline-item">
-            <span class="timeline-year">Late 2005</span>
-            <span class="timeline-text">Portfolio grows to 35+ clients across e-commerce, CMS, and static sites.</span>
-          </div>
-          <div class="timeline-item">
-            <span class="timeline-year">2006</span>
-            <span class="timeline-text">Site relaunched with updated nav ("Other Works"). New portfolio entries: Leather Villa NY, Midwest Bargains, World of CDs.</span>
-          </div>
-          <div class="timeline-item">
-            <span class="timeline-year">2007</span>
-            <span class="timeline-text">Last known activity. Site continues to serve clients globally from Västerås, Sweden.</span>
+          <div class="about-sidebar" style="width: 280px; flex-shrink: 0; display: flex; flex-direction: column; gap: 32px;">
+            <div>
+              <div style="font-family: 'IBM Plex Mono', monospace; font-size: 9px; color: #e8a000; letter-spacing: 4px; margin-bottom: 16px;">/ TIMELINE</div>
+              <div>
+                <div style="display: flex; gap: 16px; padding: 12px 0; border-bottom: 1px solid #1a1815;"><span style="font-family: 'IBM Plex Mono', monospace; font-size: 9px; color: #e8a000; width: 60px; flex-shrink: 0; line-height: 1.6;">APR 2004</span><span style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: #6a6258; line-height: 1.6;">Founded. First post published.</span></div>
+                <div style="display: flex; gap: 16px; padding: 12px 0; border-bottom: 1px solid #1a1815;"><span style="font-family: 'IBM Plex Mono', monospace; font-size: 9px; color: #e8a000; width: 60px; flex-shrink: 0; line-height: 1.6;">MAR 2005</span><span style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: #6a6258; line-height: 1.6;">Texas Poker Supply delivered.</span></div>
+                <div style="display: flex; gap: 16px; padding: 12px 0; border-bottom: 1px solid #1a1815;"><span style="font-family: 'IBM Plex Mono', monospace; font-size: 9px; color: #e8a000; width: 60px; flex-shrink: 0; line-height: 1.6;">APR 2005</span><span style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: #6a6258; line-height: 1.6;">Florida Tickets completed.</span></div>
+                <div style="display: flex; gap: 16px; padding: 12px 0; border-bottom: 1px solid #1a1815;"><span style="font-family: 'IBM Plex Mono', monospace; font-size: 9px; color: #e8a000; width: 60px; flex-shrink: 0; line-height: 1.6;">LATE 2005</span><span style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: #6a6258; line-height: 1.6;">35+ clients in portfolio.</span></div>
+                <div style="display: flex; gap: 16px; padding: 12px 0; border-bottom: 1px solid #1a1815;"><span style="font-family: 'IBM Plex Mono', monospace; font-size: 9px; color: #e8a000; width: 60px; flex-shrink: 0; line-height: 1.6;">2006</span><span style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: #6a6258; line-height: 1.6;">Leather Villa NY, Midwest Bargains.</span></div>
+                <div style="display: flex; gap: 16px; padding: 12px 0;"><span style="font-family: 'IBM Plex Mono', monospace; font-size: 9px; color: #e8a000; width: 60px; flex-shrink: 0; line-height: 1.6;">2007</span><span style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: #6a6258; line-height: 1.6;">Last known activity.</span></div>
+              </div>
+            </div>
+            <div>
+              <div style="font-family: 'IBM Plex Mono', monospace; font-size: 9px; color: #e8a000; letter-spacing: 4px; margin-bottom: 16px;">/ SERVICES</div>
+              <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: #4a4840; line-height: 2.2;">
+                <div>Website Design &amp; Development</div>
+                <div>E-commerce Solutions</div>
+                <div>Website Maintenance</div>
+                <div>Content Management</div>
+                <div>Email Management</div>
+                <div>Open Source Apps</div>
+                <div>Custom Graphics Design</div>
+                <div>Flash &amp; Multimedia</div>
+                <div>Hosting &amp; Domains</div>
+                <div>SEO</div>
+                <div>Project Management</div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-</section>
+</div>
 
-<!-- ── PORTFOLIO ── -->
-<section id="portfolio">
-  <div class="container">
-    <p class="section-label">Client Work</p>
-    <h2>Portfolio</h2>
-    <p class="portfolio-intro">Wadaan specialised in design, custom programming, and administration of open-source web applications. The portfolio below represents client work captured from 2005–2006. Technologies used include osCommerce, ZenCart, CRELoaded, Mambo, Drupal, Xoops, Plone, Typo3, and Wadaan's own W-CMS.</p>
+<!-- ═══ SECTION 02: PORTFOLIO ═══ -->
+<div id="portfolio" style="border-bottom: 1px solid #1e1c18;">
+  <div class="section-pad" style="max-width: 1200px; margin: 0 auto; padding: 0 48px;">
 
-    <div class="portfolio-category">
-      <div class="cat-header">
-        <h3>E-Commerce Websites</h3>
-        <span class="cat-count">21 clients</span>
+    <div style="display: flex; align-items: stretch; border-bottom: 1px solid #1e1c18;">
+      <div class="section-gutter" style="width: 120px; flex-shrink: 0; border-right: 1px solid #1e1c18; padding: 24px 0; display: flex; align-items: flex-start;">
+        <span style="font-family: 'Bebas Neue', sans-serif; font-size: 72px; color: #1a1815; letter-spacing: 2px; line-height: 1;">02</span>
       </div>
-      <div class="client-grid">
-        <span class="client-tag">Silver Lake Publications</span>
-        <span class="client-tag">Zone 9 Plants</span>
-        <span class="client-tag">Angel Stop</span>
-        <span class="client-tag">The Silver Penny Mall</span>
-        <span class="client-tag">Structured Style</span>
-        <span class="client-tag">Blue Lapis</span>
-        <span class="client-tag">Flexxware Golf</span>
-        <span class="client-tag">The Beef Jerky Shop</span>
-        <span class="client-tag">The Texas Poker Supply</span>
-        <span class="client-tag">Florida Tickets</span>
-        <span class="client-tag">A One Watches</span>
-        <span class="client-tag">Nintendo SystemsGCN</span>
-        <span class="client-tag">Sounds Sublime Shop</span>
-        <span class="client-tag">1-800 Bakery</span>
-        <span class="client-tag">Empress Tea Company</span>
-        <span class="client-tag">Audio Cubes</span>
-        <span class="client-tag">Neustrafe</span>
-        <span class="client-tag">Eflein Kosmetik</span>
-        <span class="client-tag">Today's Market Place</span>
-        <span class="client-tag">Lori Jean</span>
-        <span class="client-tag">World of CDs</span>
+      <div style="flex: 1; padding: 24px 0 24px 32px; display: flex; align-items: center; gap: 16px;">
+        <span style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: #e8a000; letter-spacing: 5px;">PORTFOLIO</span>
+        <div style="flex: 1; height: 1px; background: linear-gradient(to right, #e8a00040, transparent);"></div>
       </div>
     </div>
 
-    <div class="portfolio-category">
-      <div class="cat-header">
-        <h3>Static Websites</h3>
-        <span class="cat-count">9 clients</span>
-      </div>
-      <div class="client-grid">
-        <span class="client-tag">A One Stones</span>
-        <span class="client-tag">Aryana Site</span>
-        <span class="client-tag">The Site for Islamic Info</span>
-        <span class="client-tag">NWFP Wildlife Department</span>
-        <span class="client-tag">The Boulevard Condos</span>
-        <span class="client-tag">Plastic Hand Surgery</span>
-        <span class="client-tag">DPK Online</span>
-        <span class="client-tag">RL Spring</span>
-        <span class="client-tag">Frontier Archaeology</span>
-      </div>
-    </div>
+    <div style="display: flex; gap: 0;">
+      <div class="section-gutter" style="width: 120px; flex-shrink: 0; border-right: 1px solid #1e1c18;"></div>
+      <div class="section-content" style="flex: 1; padding: 48px 0 48px 32px;">
 
-    <div class="portfolio-category">
-      <div class="cat-header">
-        <h3>Real Estate Websites</h3>
-        <span class="cat-count">3 clients</span>
-      </div>
-      <div class="client-grid">
-        <span class="client-tag">Rent O Maha</span>
-        <span class="client-tag">Roatan Honduras Real Estate</span>
-        <span class="client-tag">Roatan Caribbean</span>
-      </div>
-    </div>
+        <h2 style="font-family: 'Bebas Neue', sans-serif; font-size: 64px; color: #f0ede6; margin: 0 0 12px; line-height: 0.9; letter-spacing: 2px;">CLIENT ELEMENTS</h2>
+        <p style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: #4a4840; margin: 0 0 40px; line-height: 1.7; max-width: 600px;">49 clients across osCommerce, ZenCart, CRELoaded, Mambo, Drupal, Xoops, Plone, Typo3, and W-CMS · 2005–2006</p>
 
-    <div class="portfolio-category">
-      <div class="cat-header">
-        <h3>CMS-Based Websites</h3>
-        <span class="cat-count">12 clients</span>
-      </div>
-      <div class="client-grid">
-        <span class="client-tag">MIO Watch</span>
-        <span class="client-tag">The Pashtun Foundation (W-CMS)</span>
-        <span class="client-tag">University of Ottawa, Canada</span>
-        <span class="client-tag">Gallob</span>
-        <span class="client-tag">News Central Asia</span>
-        <span class="client-tag">Water and Stone</span>
-        <span class="client-tag">North West HIV Physicians Health Care Network</span>
-        <span class="client-tag">Afghan Tribe Jewelry (W-CMS)</span>
-        <span class="client-tag">Chill Out BU</span>
-        <span class="client-tag">Solar Weekend</span>
-        <span class="client-tag">Airline Pilot Central</span>
-        <span class="client-tag">Zelda Universe</span>
-      </div>
-    </div>
+        <!-- Legend -->
+        <div style="display: flex; gap: 24px; margin-bottom: 24px; flex-wrap: wrap;">
+          <div style="display: flex; align-items: center; gap: 8px;"><div style="width: 12px; height: 2px; background: #e8a000;"></div><span style="font-family: 'IBM Plex Mono', monospace; font-size: 9px; color: #4a4840; letter-spacing: 2px;">E-COMMERCE</span></div>
+          <div style="display: flex; align-items: center; gap: 8px;"><div style="width: 12px; height: 2px; background: #4dffb4;"></div><span style="font-family: 'IBM Plex Mono', monospace; font-size: 9px; color: #4a4840; letter-spacing: 2px;">STATIC</span></div>
+          <div style="display: flex; align-items: center; gap: 8px;"><div style="width: 12px; height: 2px; background: #4d9fff;"></div><span style="font-family: 'IBM Plex Mono', monospace; font-size: 9px; color: #4a4840; letter-spacing: 2px;">REAL ESTATE</span></div>
+          <div style="display: flex; align-items: center; gap: 8px;"><div style="width: 12px; height: 2px; background: #ff6b6b;"></div><span style="font-family: 'IBM Plex Mono', monospace; font-size: 9px; color: #4a4840; letter-spacing: 2px;">CMS</span></div>
+          <div style="display: flex; align-items: center; gap: 8px;"><div style="width: 12px; height: 2px; background: #c084fc;"></div><span style="font-family: 'IBM Plex Mono', monospace; font-size: 9px; color: #4a4840; letter-spacing: 2px;">2006 LATER</span></div>
+        </div>
 
-    <div class="portfolio-category">
-      <div class="cat-header">
-        <h3>Later Projects (2006)</h3>
-        <span class="cat-count">4 clients</span>
-      </div>
-      <div class="client-grid">
-        <span class="client-tag">Leather Villa New York</span>
-        <span class="client-tag">Midwest Bargains</span>
-        <span class="client-tag">Exclusive FCP</span>
-        <span class="client-tag">World of CDs (CRELoaded)</span>
+        <!-- Periodic table grid -->
+        <div class="periodic-grid" style="display: grid; grid-template-columns: repeat(7, 1fr); gap: 3px;">
+
+          <!-- E-Commerce: amber -->
+          <div style="background:#141210; border:1px solid #2a2825; border-top:2px solid #e8a000; padding:8px 6px; height:108px; display:flex; flex-direction:column; position:relative;"><div style="font-family:'IBM Plex Mono',monospace; font-size:7px; color:#e8a00090; position:absolute; top:6px; right:6px;">01</div><div style="font-family:'Bebas Neue',sans-serif; font-size:26px; color:#f0ede6; line-height:1; text-align:center; flex:1; display:flex; align-items:center; justify-content:center; letter-spacing:1px;">SLP</div><div style="font-family:'IBM Plex Mono',monospace; font-size:6.5px; color:#6a6258; text-align:center; line-height:1.4;">Silver Lake<br/>Publications</div></div>
+          <div style="background:#141210; border:1px solid #2a2825; border-top:2px solid #e8a000; padding:8px 6px; height:108px; display:flex; flex-direction:column; position:relative;"><div style="font-family:'IBM Plex Mono',monospace; font-size:7px; color:#e8a00090; position:absolute; top:6px; right:6px;">02</div><div style="font-family:'Bebas Neue',sans-serif; font-size:26px; color:#f0ede6; line-height:1; text-align:center; flex:1; display:flex; align-items:center; justify-content:center; letter-spacing:1px;">Z9P</div><div style="font-family:'IBM Plex Mono',monospace; font-size:6.5px; color:#6a6258; text-align:center; line-height:1.4;">Zone 9<br/>Plants</div></div>
+          <div style="background:#141210; border:1px solid #2a2825; border-top:2px solid #e8a000; padding:8px 6px; height:108px; display:flex; flex-direction:column; position:relative;"><div style="font-family:'IBM Plex Mono',monospace; font-size:7px; color:#e8a00090; position:absolute; top:6px; right:6px;">03</div><div style="font-family:'Bebas Neue',sans-serif; font-size:26px; color:#f0ede6; line-height:1; text-align:center; flex:1; display:flex; align-items:center; justify-content:center; letter-spacing:1px;">ANS</div><div style="font-family:'IBM Plex Mono',monospace; font-size:6.5px; color:#6a6258; text-align:center; line-height:1.4;">Angel<br/>Stop</div></div>
+          <div style="background:#141210; border:1px solid #2a2825; border-top:2px solid #e8a000; padding:8px 6px; height:108px; display:flex; flex-direction:column; position:relative;"><div style="font-family:'IBM Plex Mono',monospace; font-size:7px; color:#e8a00090; position:absolute; top:6px; right:6px;">04</div><div style="font-family:'Bebas Neue',sans-serif; font-size:26px; color:#f0ede6; line-height:1; text-align:center; flex:1; display:flex; align-items:center; justify-content:center; letter-spacing:1px;">SPM</div><div style="font-family:'IBM Plex Mono',monospace; font-size:6.5px; color:#6a6258; text-align:center; line-height:1.4;">Silver Penny<br/>Mall</div></div>
+          <div style="background:#141210; border:1px solid #2a2825; border-top:2px solid #e8a000; padding:8px 6px; height:108px; display:flex; flex-direction:column; position:relative;"><div style="font-family:'IBM Plex Mono',monospace; font-size:7px; color:#e8a00090; position:absolute; top:6px; right:6px;">05</div><div style="font-family:'Bebas Neue',sans-serif; font-size:26px; color:#f0ede6; line-height:1; text-align:center; flex:1; display:flex; align-items:center; justify-content:center; letter-spacing:1px;">STR</div><div style="font-family:'IBM Plex Mono',monospace; font-size:6.5px; color:#6a6258; text-align:center; line-height:1.4;">Structured<br/>Style</div></div>
+          <div style="background:#141210; border:1px solid #2a2825; border-top:2px solid #e8a000; padding:8px 6px; height:108px; display:flex; flex-direction:column; position:relative;"><div style="font-family:'IBM Plex Mono',monospace; font-size:7px; color:#e8a00090; position:absolute; top:6px; right:6px;">06</div><div style="font-family:'Bebas Neue',sans-serif; font-size:26px; color:#f0ede6; line-height:1; text-align:center; flex:1; display:flex; align-items:center; justify-content:center; letter-spacing:1px;">BLU</div><div style="font-family:'IBM Plex Mono',monospace; font-size:6.5px; color:#6a6258; text-align:center; line-height:1.4;">Blue<br/>Lapis</div></div>
+          <div style="background:#141210; border:1px solid #2a2825; border-top:2px solid #e8a000; padding:8px 6px; height:108px; display:flex; flex-direction:column; position:relative;"><div style="font-family:'IBM Plex Mono',monospace; font-size:7px; color:#e8a00090; position:absolute; top:6px; right:6px;">07</div><div style="font-family:'Bebas Neue',sans-serif; font-size:26px; color:#f0ede6; line-height:1; text-align:center; flex:1; display:flex; align-items:center; justify-content:center; letter-spacing:1px;">FXW</div><div style="font-family:'IBM Plex Mono',monospace; font-size:6.5px; color:#6a6258; text-align:center; line-height:1.4;">Flexxware<br/>Golf</div></div>
+
+          <div style="background:#141210; border:1px solid #2a2825; border-top:2px solid #e8a000; padding:8px 6px; height:108px; display:flex; flex-direction:column; position:relative;"><div style="font-family:'IBM Plex Mono',monospace; font-size:7px; color:#e8a00090; position:absolute; top:6px; right:6px;">08</div><div style="font-family:'Bebas Neue',sans-serif; font-size:26px; color:#f0ede6; line-height:1; text-align:center; flex:1; display:flex; align-items:center; justify-content:center; letter-spacing:1px;">BJS</div><div style="font-family:'IBM Plex Mono',monospace; font-size:6.5px; color:#6a6258; text-align:center; line-height:1.4;">Beef Jerky<br/>Shop</div></div>
+          <div style="background:#141210; border:1px solid #2a2825; border-top:2px solid #e8a000; padding:8px 6px; height:108px; display:flex; flex-direction:column; position:relative;"><div style="font-family:'IBM Plex Mono',monospace; font-size:7px; color:#e8a00090; position:absolute; top:6px; right:6px;">09</div><div style="font-family:'Bebas Neue',sans-serif; font-size:26px; color:#f0ede6; line-height:1; text-align:center; flex:1; display:flex; align-items:center; justify-content:center; letter-spacing:1px;">TXP</div><div style="font-family:'IBM Plex Mono',monospace; font-size:6.5px; color:#6a6258; text-align:center; line-height:1.4;">Texas Poker<br/>Supply</div></div>
+          <div style="background:#141210; border:1px solid #2a2825; border-top:2px solid #e8a000; padding:8px 6px; height:108px; display:flex; flex-direction:column; position:relative;"><div style="font-family:'IBM Plex Mono',monospace; font-size:7px; color:#e8a00090; position:absolute; top:6px; right:6px;">10</div><div style="font-family:'Bebas Neue',sans-serif; font-size:26px; color:#f0ede6; line-height:1; text-align:center; flex:1; display:flex; align-items:center; justify-content:center; letter-spacing:1px;">FLT</div><div style="font-family:'IBM Plex Mono',monospace; font-size:6.5px; color:#6a6258; text-align:center; line-height:1.4;">Florida<br/>Tickets</div></div>
+          <div style="background:#141210; border:1px solid #2a2825; border-top:2px solid #e8a000; padding:8px 6px; height:108px; display:flex; flex-direction:column; position:relative;"><div style="font-family:'IBM Plex Mono',monospace; font-size:7px; color:#e8a00090; position:absolute; top:6px; right:6px;">11</div><div style="font-family:'Bebas Neue',sans-serif; font-size:26px; color:#f0ede6; line-height:1; text-align:center; flex:1; display:flex; align-items:center; justify-content:center; letter-spacing:1px;">AOW</div><div style="font-family:'IBM Plex Mono',monospace; font-size:6.5px; color:#6a6258; text-align:center; line-height:1.4;">A One<br/>Watches</div></div>
+          <div style="background:#141210; border:1px solid #2a2825; border-top:2px solid #e8a000; padding:8px 6px; height:108px; display:flex; flex-direction:column; position:relative;"><div style="font-family:'IBM Plex Mono',monospace; font-size:7px; color:#e8a00090; position:absolute; top:6px; right:6px;">12</div><div style="font-family:'Bebas Neue',sans-serif; font-size:26px; color:#f0ede6; line-height:1; text-align:center; flex:1; display:flex; align-items:center; justify-content:center; letter-spacing:1px;">NGC</div><div style="font-family:'IBM Plex Mono',monospace; font-size:6.5px; color:#6a6258; text-align:center; line-height:1.4;">Nintendo<br/>SystemsGCN</div></div>
+          <div style="background:#141210; border:1px solid #2a2825; border-top:2px solid #e8a000; padding:8px 6px; height:108px; display:flex; flex-direction:column; position:relative;"><div style="font-family:'IBM Plex Mono',monospace; font-size:7px; color:#e8a00090; position:absolute; top:6px; right:6px;">13</div><div style="font-family:'Bebas Neue',sans-serif; font-size:26px; color:#f0ede6; line-height:1; text-align:center; flex:1; display:flex; align-items:center; justify-content:center; letter-spacing:1px;">SSL</div><div style="font-family:'IBM Plex Mono',monospace; font-size:6.5px; color:#6a6258; text-align:center; line-height:1.4;">Sounds<br/>Sublime Shop</div></div>
+          <div style="background:#141210; border:1px solid #2a2825; border-top:2px solid #e8a000; padding:8px 6px; height:108px; display:flex; flex-direction:column; position:relative;"><div style="font-family:'IBM Plex Mono',monospace; font-size:7px; color:#e8a00090; position:absolute; top:6px; right:6px;">14</div><div style="font-family:'Bebas Neue',sans-serif; font-size:26px; color:#f0ede6; line-height:1; text-align:center; flex:1; display:flex; align-items:center; justify-content:center; letter-spacing:1px;">BAK</div><div style="font-family:'IBM Plex Mono',monospace; font-size:6.5px; color:#6a6258; text-align:center; line-height:1.4;">1-800<br/>Bakery</div></div>
+
+          <div style="background:#141210; border:1px solid #2a2825; border-top:2px solid #e8a000; padding:8px 6px; height:108px; display:flex; flex-direction:column; position:relative;"><div style="font-family:'IBM Plex Mono',monospace; font-size:7px; color:#e8a00090; position:absolute; top:6px; right:6px;">15</div><div style="font-family:'Bebas Neue',sans-serif; font-size:26px; color:#f0ede6; line-height:1; text-align:center; flex:1; display:flex; align-items:center; justify-content:center; letter-spacing:1px;">ETC</div><div style="font-family:'IBM Plex Mono',monospace; font-size:6.5px; color:#6a6258; text-align:center; line-height:1.4;">Empress Tea<br/>Company</div></div>
+          <div style="background:#141210; border:1px solid #2a2825; border-top:2px solid #e8a000; padding:8px 6px; height:108px; display:flex; flex-direction:column; position:relative;"><div style="font-family:'IBM Plex Mono',monospace; font-size:7px; color:#e8a00090; position:absolute; top:6px; right:6px;">16</div><div style="font-family:'Bebas Neue',sans-serif; font-size:26px; color:#f0ede6; line-height:1; text-align:center; flex:1; display:flex; align-items:center; justify-content:center; letter-spacing:1px;">AUC</div><div style="font-family:'IBM Plex Mono',monospace; font-size:6.5px; color:#6a6258; text-align:center; line-height:1.4;">Audio<br/>Cubes</div></div>
+          <div style="background:#141210; border:1px solid #2a2825; border-top:2px solid #e8a000; padding:8px 6px; height:108px; display:flex; flex-direction:column; position:relative;"><div style="font-family:'IBM Plex Mono',monospace; font-size:7px; color:#e8a00090; position:absolute; top:6px; right:6px;">17</div><div style="font-family:'Bebas Neue',sans-serif; font-size:26px; color:#f0ede6; line-height:1; text-align:center; flex:1; display:flex; align-items:center; justify-content:center; letter-spacing:1px;">NEU</div><div style="font-family:'IBM Plex Mono',monospace; font-size:6.5px; color:#6a6258; text-align:center; line-height:1.4;">Neustrafe</div></div>
+          <div style="background:#141210; border:1px solid #2a2825; border-top:2px solid #e8a000; padding:8px 6px; height:108px; display:flex; flex-direction:column; position:relative;"><div style="font-family:'IBM Plex Mono',monospace; font-size:7px; color:#e8a00090; position:absolute; top:6px; right:6px;">18</div><div style="font-family:'Bebas Neue',sans-serif; font-size:26px; color:#f0ede6; line-height:1; text-align:center; flex:1; display:flex; align-items:center; justify-content:center; letter-spacing:1px;">EFK</div><div style="font-family:'IBM Plex Mono',monospace; font-size:6.5px; color:#6a6258; text-align:center; line-height:1.4;">Eflein<br/>Kosmetik</div></div>
+          <div style="background:#141210; border:1px solid #2a2825; border-top:2px solid #e8a000; padding:8px 6px; height:108px; display:flex; flex-direction:column; position:relative;"><div style="font-family:'IBM Plex Mono',monospace; font-size:7px; color:#e8a00090; position:absolute; top:6px; right:6px;">19</div><div style="font-family:'Bebas Neue',sans-serif; font-size:26px; color:#f0ede6; line-height:1; text-align:center; flex:1; display:flex; align-items:center; justify-content:center; letter-spacing:1px;">TMP</div><div style="font-family:'IBM Plex Mono',monospace; font-size:6.5px; color:#6a6258; text-align:center; line-height:1.4;">Today's<br/>Market Place</div></div>
+          <div style="background:#141210; border:1px solid #2a2825; border-top:2px solid #e8a000; padding:8px 6px; height:108px; display:flex; flex-direction:column; position:relative;"><div style="font-family:'IBM Plex Mono',monospace; font-size:7px; color:#e8a00090; position:absolute; top:6px; right:6px;">20</div><div style="font-family:'Bebas Neue',sans-serif; font-size:26px; color:#f0ede6; line-height:1; text-align:center; flex:1; display:flex; align-items:center; justify-content:center; letter-spacing:1px;">LJN</div><div style="font-family:'IBM Plex Mono',monospace; font-size:6.5px; color:#6a6258; text-align:center; line-height:1.4;">Lori<br/>Jean</div></div>
+          <div style="background:#141210; border:1px solid #2a2825; border-top:2px solid #e8a000; padding:8px 6px; height:108px; display:flex; flex-direction:column; position:relative;"><div style="font-family:'IBM Plex Mono',monospace; font-size:7px; color:#e8a00090; position:absolute; top:6px; right:6px;">21</div><div style="font-family:'Bebas Neue',sans-serif; font-size:26px; color:#f0ede6; line-height:1; text-align:center; flex:1; display:flex; align-items:center; justify-content:center; letter-spacing:1px;">WCD</div><div style="font-family:'IBM Plex Mono',monospace; font-size:6.5px; color:#6a6258; text-align:center; line-height:1.4;">World<br/>of CDs</div></div>
+
+          <!-- Static: mint -->
+          <div style="background:#101410; border:1px solid #2a2825; border-top:2px solid #4dffb4; padding:8px 6px; height:108px; display:flex; flex-direction:column; position:relative;"><div style="font-family:'IBM Plex Mono',monospace; font-size:7px; color:#4dffb490; position:absolute; top:6px; right:6px;">22</div><div style="font-family:'Bebas Neue',sans-serif; font-size:26px; color:#f0ede6; line-height:1; text-align:center; flex:1; display:flex; align-items:center; justify-content:center; letter-spacing:1px;">AOS</div><div style="font-family:'IBM Plex Mono',monospace; font-size:6.5px; color:#6a6258; text-align:center; line-height:1.4;">A One<br/>Stones</div></div>
+          <div style="background:#101410; border:1px solid #2a2825; border-top:2px solid #4dffb4; padding:8px 6px; height:108px; display:flex; flex-direction:column; position:relative;"><div style="font-family:'IBM Plex Mono',monospace; font-size:7px; color:#4dffb490; position:absolute; top:6px; right:6px;">23</div><div style="font-family:'Bebas Neue',sans-serif; font-size:26px; color:#f0ede6; line-height:1; text-align:center; flex:1; display:flex; align-items:center; justify-content:center; letter-spacing:1px;">ARY</div><div style="font-family:'IBM Plex Mono',monospace; font-size:6.5px; color:#6a6258; text-align:center; line-height:1.4;">Aryana<br/>Site</div></div>
+          <div style="background:#101410; border:1px solid #2a2825; border-top:2px solid #4dffb4; padding:8px 6px; height:108px; display:flex; flex-direction:column; position:relative;"><div style="font-family:'IBM Plex Mono',monospace; font-size:7px; color:#4dffb490; position:absolute; top:6px; right:6px;">24</div><div style="font-family:'Bebas Neue',sans-serif; font-size:26px; color:#f0ede6; line-height:1; text-align:center; flex:1; display:flex; align-items:center; justify-content:center; letter-spacing:1px;">ISI</div><div style="font-family:'IBM Plex Mono',monospace; font-size:6.5px; color:#6a6258; text-align:center; line-height:1.4;">Islamic<br/>Info</div></div>
+          <div style="background:#101410; border:1px solid #2a2825; border-top:2px solid #4dffb4; padding:8px 6px; height:108px; display:flex; flex-direction:column; position:relative;"><div style="font-family:'IBM Plex Mono',monospace; font-size:7px; color:#4dffb490; position:absolute; top:6px; right:6px;">25</div><div style="font-family:'Bebas Neue',sans-serif; font-size:26px; color:#f0ede6; line-height:1; text-align:center; flex:1; display:flex; align-items:center; justify-content:center; letter-spacing:1px;">NWF</div><div style="font-family:'IBM Plex Mono',monospace; font-size:6.5px; color:#6a6258; text-align:center; line-height:1.4;">NWFP<br/>Wildlife Dept</div></div>
+          <div style="background:#101410; border:1px solid #2a2825; border-top:2px solid #4dffb4; padding:8px 6px; height:108px; display:flex; flex-direction:column; position:relative;"><div style="font-family:'IBM Plex Mono',monospace; font-size:7px; color:#4dffb490; position:absolute; top:6px; right:6px;">26</div><div style="font-family:'Bebas Neue',sans-serif; font-size:26px; color:#f0ede6; line-height:1; text-align:center; flex:1; display:flex; align-items:center; justify-content:center; letter-spacing:1px;">BLV</div><div style="font-family:'IBM Plex Mono',monospace; font-size:6.5px; color:#6a6258; text-align:center; line-height:1.4;">Boulevard<br/>Condos</div></div>
+          <div style="background:#101410; border:1px solid #2a2825; border-top:2px solid #4dffb4; padding:8px 6px; height:108px; display:flex; flex-direction:column; position:relative;"><div style="font-family:'IBM Plex Mono',monospace; font-size:7px; color:#4dffb490; position:absolute; top:6px; right:6px;">27</div><div style="font-family:'Bebas Neue',sans-serif; font-size:26px; color:#f0ede6; line-height:1; text-align:center; flex:1; display:flex; align-items:center; justify-content:center; letter-spacing:1px;">PHS</div><div style="font-family:'IBM Plex Mono',monospace; font-size:6.5px; color:#6a6258; text-align:center; line-height:1.4;">Plastic Hand<br/>Surgery</div></div>
+          <div style="background:#101410; border:1px solid #2a2825; border-top:2px solid #4dffb4; padding:8px 6px; height:108px; display:flex; flex-direction:column; position:relative;"><div style="font-family:'IBM Plex Mono',monospace; font-size:7px; color:#4dffb490; position:absolute; top:6px; right:6px;">28</div><div style="font-family:'Bebas Neue',sans-serif; font-size:26px; color:#f0ede6; line-height:1; text-align:center; flex:1; display:flex; align-items:center; justify-content:center; letter-spacing:1px;">DPK</div><div style="font-family:'IBM Plex Mono',monospace; font-size:6.5px; color:#6a6258; text-align:center; line-height:1.4;">DPK<br/>Online</div></div>
+
+          <div style="background:#101410; border:1px solid #2a2825; border-top:2px solid #4dffb4; padding:8px 6px; height:108px; display:flex; flex-direction:column; position:relative;"><div style="font-family:'IBM Plex Mono',monospace; font-size:7px; color:#4dffb490; position:absolute; top:6px; right:6px;">29</div><div style="font-family:'Bebas Neue',sans-serif; font-size:26px; color:#f0ede6; line-height:1; text-align:center; flex:1; display:flex; align-items:center; justify-content:center; letter-spacing:1px;">RLS</div><div style="font-family:'IBM Plex Mono',monospace; font-size:6.5px; color:#6a6258; text-align:center; line-height:1.4;">RL<br/>Spring</div></div>
+          <div style="background:#101410; border:1px solid #2a2825; border-top:2px solid #4dffb4; padding:8px 6px; height:108px; display:flex; flex-direction:column; position:relative;"><div style="font-family:'IBM Plex Mono',monospace; font-size:7px; color:#4dffb490; position:absolute; top:6px; right:6px;">30</div><div style="font-family:'Bebas Neue',sans-serif; font-size:26px; color:#f0ede6; line-height:1; text-align:center; flex:1; display:flex; align-items:center; justify-content:center; letter-spacing:1px;">FRA</div><div style="font-family:'IBM Plex Mono',monospace; font-size:6.5px; color:#6a6258; text-align:center; line-height:1.4;">Frontier<br/>Archaeology</div></div>
+
+          <!-- Real Estate: blue -->
+          <div style="background:#0e1018; border:1px solid #2a2825; border-top:2px solid #4d9fff; padding:8px 6px; height:108px; display:flex; flex-direction:column; position:relative;"><div style="font-family:'IBM Plex Mono',monospace; font-size:7px; color:#4d9fff90; position:absolute; top:6px; right:6px;">31</div><div style="font-family:'Bebas Neue',sans-serif; font-size:26px; color:#f0ede6; line-height:1; text-align:center; flex:1; display:flex; align-items:center; justify-content:center; letter-spacing:1px;">ROM</div><div style="font-family:'IBM Plex Mono',monospace; font-size:6.5px; color:#6a6258; text-align:center; line-height:1.4;">Rent<br/>O Maha</div></div>
+          <div style="background:#0e1018; border:1px solid #2a2825; border-top:2px solid #4d9fff; padding:8px 6px; height:108px; display:flex; flex-direction:column; position:relative;"><div style="font-family:'IBM Plex Mono',monospace; font-size:7px; color:#4d9fff90; position:absolute; top:6px; right:6px;">32</div><div style="font-family:'Bebas Neue',sans-serif; font-size:26px; color:#f0ede6; line-height:1; text-align:center; flex:1; display:flex; align-items:center; justify-content:center; letter-spacing:1px;">RHN</div><div style="font-family:'IBM Plex Mono',monospace; font-size:6.5px; color:#6a6258; text-align:center; line-height:1.4;">Roatan<br/>Honduras RE</div></div>
+          <div style="background:#0e1018; border:1px solid #2a2825; border-top:2px solid #4d9fff; padding:8px 6px; height:108px; display:flex; flex-direction:column; position:relative;"><div style="font-family:'IBM Plex Mono',monospace; font-size:7px; color:#4d9fff90; position:absolute; top:6px; right:6px;">33</div><div style="font-family:'Bebas Neue',sans-serif; font-size:26px; color:#f0ede6; line-height:1; text-align:center; flex:1; display:flex; align-items:center; justify-content:center; letter-spacing:1px;">RCA</div><div style="font-family:'IBM Plex Mono',monospace; font-size:6.5px; color:#6a6258; text-align:center; line-height:1.4;">Roatan<br/>Caribbean</div></div>
+
+          <!-- CMS: coral -->
+          <div style="background:#180e0e; border:1px solid #2a2825; border-top:2px solid #ff6b6b; padding:8px 6px; height:108px; display:flex; flex-direction:column; position:relative;"><div style="font-family:'IBM Plex Mono',monospace; font-size:7px; color:#ff6b6b90; position:absolute; top:6px; right:6px;">34</div><div style="font-family:'Bebas Neue',sans-serif; font-size:26px; color:#f0ede6; line-height:1; text-align:center; flex:1; display:flex; align-items:center; justify-content:center; letter-spacing:1px;">MIO</div><div style="font-family:'IBM Plex Mono',monospace; font-size:6.5px; color:#6a6258; text-align:center; line-height:1.4;">MIO<br/>Watch</div></div>
+          <div style="background:#180e0e; border:1px solid #2a2825; border-top:2px solid #ff6b6b; padding:8px 6px; height:108px; display:flex; flex-direction:column; position:relative;"><div style="font-family:'IBM Plex Mono',monospace; font-size:7px; color:#ff6b6b90; position:absolute; top:6px; right:6px;">35</div><div style="font-family:'Bebas Neue',sans-serif; font-size:26px; color:#f0ede6; line-height:1; text-align:center; flex:1; display:flex; align-items:center; justify-content:center; letter-spacing:1px;">PTF</div><div style="font-family:'IBM Plex Mono',monospace; font-size:6.5px; color:#6a6258; text-align:center; line-height:1.4;">Pashtun<br/>Foundation</div></div>
+          <div style="background:#180e0e; border:1px solid #2a2825; border-top:2px solid #ff6b6b; padding:8px 6px; height:108px; display:flex; flex-direction:column; position:relative;"><div style="font-family:'IBM Plex Mono',monospace; font-size:7px; color:#ff6b6b90; position:absolute; top:6px; right:6px;">36</div><div style="font-family:'Bebas Neue',sans-serif; font-size:26px; color:#f0ede6; line-height:1; text-align:center; flex:1; display:flex; align-items:center; justify-content:center; letter-spacing:1px;">UOT</div><div style="font-family:'IBM Plex Mono',monospace; font-size:6.5px; color:#6a6258; text-align:center; line-height:1.4;">Univ.<br/>Ottawa CA</div></div>
+          <div style="background:#180e0e; border:1px solid #2a2825; border-top:2px solid #ff6b6b; padding:8px 6px; height:108px; display:flex; flex-direction:column; position:relative;"><div style="font-family:'IBM Plex Mono',monospace; font-size:7px; color:#ff6b6b90; position:absolute; top:6px; right:6px;">37</div><div style="font-family:'Bebas Neue',sans-serif; font-size:26px; color:#f0ede6; line-height:1; text-align:center; flex:1; display:flex; align-items:center; justify-content:center; letter-spacing:1px;">GAL</div><div style="font-family:'IBM Plex Mono',monospace; font-size:6.5px; color:#6a6258; text-align:center; line-height:1.4;">Gallob</div></div>
+          <div style="background:#180e0e; border:1px solid #2a2825; border-top:2px solid #ff6b6b; padding:8px 6px; height:108px; display:flex; flex-direction:column; position:relative;"><div style="font-family:'IBM Plex Mono',monospace; font-size:7px; color:#ff6b6b90; position:absolute; top:6px; right:6px;">38</div><div style="font-family:'Bebas Neue',sans-serif; font-size:26px; color:#f0ede6; line-height:1; text-align:center; flex:1; display:flex; align-items:center; justify-content:center; letter-spacing:1px;">NCA</div><div style="font-family:'IBM Plex Mono',monospace; font-size:6.5px; color:#6a6258; text-align:center; line-height:1.4;">News<br/>Central Asia</div></div>
+          <div style="background:#180e0e; border:1px solid #2a2825; border-top:2px solid #ff6b6b; padding:8px 6px; height:108px; display:flex; flex-direction:column; position:relative;"><div style="font-family:'IBM Plex Mono',monospace; font-size:7px; color:#ff6b6b90; position:absolute; top:6px; right:6px;">39</div><div style="font-family:'Bebas Neue',sans-serif; font-size:26px; color:#f0ede6; line-height:1; text-align:center; flex:1; display:flex; align-items:center; justify-content:center; letter-spacing:1px;">WAS</div><div style="font-family:'IBM Plex Mono',monospace; font-size:6.5px; color:#6a6258; text-align:center; line-height:1.4;">Water<br/>and Stone</div></div>
+          <div style="background:#180e0e; border:1px solid #2a2825; border-top:2px solid #ff6b6b; padding:8px 6px; height:108px; display:flex; flex-direction:column; position:relative;"><div style="font-family:'IBM Plex Mono',monospace; font-size:7px; color:#ff6b6b90; position:absolute; top:6px; right:6px;">40</div><div style="font-family:'Bebas Neue',sans-serif; font-size:26px; color:#f0ede6; line-height:1; text-align:center; flex:1; display:flex; align-items:center; justify-content:center; letter-spacing:1px;">NWH</div><div style="font-family:'IBM Plex Mono',monospace; font-size:6.5px; color:#6a6258; text-align:center; line-height:1.4;">NW HIV<br/>Physicians</div></div>
+          <div style="background:#180e0e; border:1px solid #2a2825; border-top:2px solid #ff6b6b; padding:8px 6px; height:108px; display:flex; flex-direction:column; position:relative;"><div style="font-family:'IBM Plex Mono',monospace; font-size:7px; color:#ff6b6b90; position:absolute; top:6px; right:6px;">41</div><div style="font-family:'Bebas Neue',sans-serif; font-size:26px; color:#f0ede6; line-height:1; text-align:center; flex:1; display:flex; align-items:center; justify-content:center; letter-spacing:1px;">ATJ</div><div style="font-family:'IBM Plex Mono',monospace; font-size:6.5px; color:#6a6258; text-align:center; line-height:1.4;">Afghan Tribe<br/>Jewelry</div></div>
+          <div style="background:#180e0e; border:1px solid #2a2825; border-top:2px solid #ff6b6b; padding:8px 6px; height:108px; display:flex; flex-direction:column; position:relative;"><div style="font-family:'IBM Plex Mono',monospace; font-size:7px; color:#ff6b6b90; position:absolute; top:6px; right:6px;">42</div><div style="font-family:'Bebas Neue',sans-serif; font-size:26px; color:#f0ede6; line-height:1; text-align:center; flex:1; display:flex; align-items:center; justify-content:center; letter-spacing:1px;">COU</div><div style="font-family:'IBM Plex Mono',monospace; font-size:6.5px; color:#6a6258; text-align:center; line-height:1.4;">Chill<br/>Out BU</div></div>
+          <div style="background:#180e0e; border:1px solid #2a2825; border-top:2px solid #ff6b6b; padding:8px 6px; height:108px; display:flex; flex-direction:column; position:relative;"><div style="font-family:'IBM Plex Mono',monospace; font-size:7px; color:#ff6b6b90; position:absolute; top:6px; right:6px;">43</div><div style="font-family:'Bebas Neue',sans-serif; font-size:26px; color:#f0ede6; line-height:1; text-align:center; flex:1; display:flex; align-items:center; justify-content:center; letter-spacing:1px;">SOL</div><div style="font-family:'IBM Plex Mono',monospace; font-size:6.5px; color:#6a6258; text-align:center; line-height:1.4;">Solar<br/>Weekend</div></div>
+          <div style="background:#180e0e; border:1px solid #2a2825; border-top:2px solid #ff6b6b; padding:8px 6px; height:108px; display:flex; flex-direction:column; position:relative;"><div style="font-family:'IBM Plex Mono',monospace; font-size:7px; color:#ff6b6b90; position:absolute; top:6px; right:6px;">44</div><div style="font-family:'Bebas Neue',sans-serif; font-size:26px; color:#f0ede6; line-height:1; text-align:center; flex:1; display:flex; align-items:center; justify-content:center; letter-spacing:1px;">APC</div><div style="font-family:'IBM Plex Mono',monospace; font-size:6.5px; color:#6a6258; text-align:center; line-height:1.4;">Airline Pilot<br/>Central</div></div>
+          <div style="background:#180e0e; border:1px solid #2a2825; border-top:2px solid #ff6b6b; padding:8px 6px; height:108px; display:flex; flex-direction:column; position:relative;"><div style="font-family:'IBM Plex Mono',monospace; font-size:7px; color:#ff6b6b90; position:absolute; top:6px; right:6px;">45</div><div style="font-family:'Bebas Neue',sans-serif; font-size:26px; color:#f0ede6; line-height:1; text-align:center; flex:1; display:flex; align-items:center; justify-content:center; letter-spacing:1px;">ZLU</div><div style="font-family:'IBM Plex Mono',monospace; font-size:6.5px; color:#6a6258; text-align:center; line-height:1.4;">Zelda<br/>Universe</div></div>
+
+          <!-- Later 2006: lavender -->
+          <div style="background:#130e18; border:1px solid #2a2825; border-top:2px solid #c084fc; padding:8px 6px; height:108px; display:flex; flex-direction:column; position:relative;"><div style="font-family:'IBM Plex Mono',monospace; font-size:7px; color:#c084fc90; position:absolute; top:6px; right:6px;">46</div><div style="font-family:'Bebas Neue',sans-serif; font-size:26px; color:#f0ede6; line-height:1; text-align:center; flex:1; display:flex; align-items:center; justify-content:center; letter-spacing:1px;">LVN</div><div style="font-family:'IBM Plex Mono',monospace; font-size:6.5px; color:#6a6258; text-align:center; line-height:1.4;">Leather Villa<br/>New York</div></div>
+          <div style="background:#130e18; border:1px solid #2a2825; border-top:2px solid #c084fc; padding:8px 6px; height:108px; display:flex; flex-direction:column; position:relative;"><div style="font-family:'IBM Plex Mono',monospace; font-size:7px; color:#c084fc90; position:absolute; top:6px; right:6px;">47</div><div style="font-family:'Bebas Neue',sans-serif; font-size:26px; color:#f0ede6; line-height:1; text-align:center; flex:1; display:flex; align-items:center; justify-content:center; letter-spacing:1px;">MWB</div><div style="font-family:'IBM Plex Mono',monospace; font-size:6.5px; color:#6a6258; text-align:center; line-height:1.4;">Midwest<br/>Bargains</div></div>
+          <div style="background:#130e18; border:1px solid #2a2825; border-top:2px solid #c084fc; padding:8px 6px; height:108px; display:flex; flex-direction:column; position:relative;"><div style="font-family:'IBM Plex Mono',monospace; font-size:7px; color:#c084fc90; position:absolute; top:6px; right:6px;">48</div><div style="font-family:'Bebas Neue',sans-serif; font-size:26px; color:#f0ede6; line-height:1; text-align:center; flex:1; display:flex; align-items:center; justify-content:center; letter-spacing:1px;">XFP</div><div style="font-family:'IBM Plex Mono',monospace; font-size:6.5px; color:#6a6258; text-align:center; line-height:1.4;">Exclusive<br/>FCP</div></div>
+          <div style="background:#130e18; border:1px solid #2a2825; border-top:2px solid #c084fc; padding:8px 6px; height:108px; display:flex; flex-direction:column; position:relative;"><div style="font-family:'IBM Plex Mono',monospace; font-size:7px; color:#c084fc90; position:absolute; top:6px; right:6px;">49</div><div style="font-family:'Bebas Neue',sans-serif; font-size:26px; color:#f0ede6; line-height:1; text-align:center; flex:1; display:flex; align-items:center; justify-content:center; letter-spacing:1px;">WOC</div><div style="font-family:'IBM Plex Mono',monospace; font-size:6.5px; color:#6a6258; text-align:center; line-height:1.4;">World of CDs<br/>CRELoaded</div></div>
+
+        </div>
       </div>
     </div>
   </div>
-</section>
+</div>
 
-<!-- ── BLOG / NEWS ── -->
-<section id="blog">
-  <div class="container">
-    <p class="section-label">Writing &amp; Updates</p>
-    <h2>News &amp; Blog</h2>
-
-    <div class="post">
-      <p class="post-date">Monday, 12 April 2004 — Founding Post</p>
-      <h3>Welcome to Wadaan…The Web Development Network!</h3>
-      <p>Equipped with creative minds, fast fingertips, and the latest technology, Wadaan takes great pride in diverse and exciting designs and dynamic web applications. From simple text &amp; graphics to more intricate designs, logos, and database-driven websites, Wadaan provides amazing services at very affordable prices.</p>
-    </div>
-
-    <div class="post">
-      <p class="post-date">Friday, 25 March 2005</p>
-      <h3>E-commerce Website 'Texas Poker Supply' completed</h3>
-      <p>The e-commerce project was completed very rapidly as per the requirements of the client. The client is very satisfied with our quality of work and intends to contact Wadaan for further modifications to his osCommerce-based site in the near future.</p>
-      <span class="post-url">www.txpokersupply.com</span>
-    </div>
-
-    <div class="post">
-      <p class="post-date">Friday, 01 April 2005</p>
-      <h3>E-Commerce Website 'Florida Tickets' is Done</h3>
-      <p>This website was quite a simple one. We were assigned the task of applying a template to the vanilla version of osCommerce 2 MS 2.2. The client didn't have any PSD or HTML files. Our designer used the image supplied by the client and CSS to make changes. Buttons were also designed by Wadaan. Some other small changes were also made to the site.</p>
-      <span class="post-url">www.floridatickets.org</span>
-    </div>
-
-    <div class="post">
-      <p class="post-date">2005 — News</p>
-      <h3>IBM Pledges Patents to Open Source</h3>
-      <p>IBM said it is pledging 500 software patents to developers of open-source software so they can develop without fear. The patents are available to those who abide by the Open Source Initiative (OSI) and use one of 50 OSI-certified licenses.</p>
-    </div>
-
-    <div class="post">
-      <p class="post-date">2006 — Portfolio Update</p>
-      <h3>Leather Villa New York</h3>
-      <p>One of our best works so far. Wadaan's job was the full design and backend provision and configuration for this site. osCommerce was used to set up the backend e-commerce script. The website has numerous great modules installed — a good admin authentication system, a Rich Text (WYSIWYG) Editor, and payment/shipping gateways including PayPal, Credit Card, and UPS.</p>
-    </div>
-
-    <div class="post">
-      <p class="post-date">2006 — Portfolio Update</p>
-      <h3>Midwest Bargains</h3>
-      <p>A great website! Wadaan's task was to create a good design including a logo and a banner.</p>
-    </div>
-
-    <div class="post">
-      <p class="post-date">2006 — Portfolio Update</p>
-      <h3>Exclusive FCP</h3>
-      <p>Complete re-design of the site and fixing of some bugs was the task.</p>
-    </div>
-
-    <div class="post">
-      <p class="post-date">2006 — Portfolio Update</p>
-      <h3>World of CDs</h3>
-      <p>A cool-looking webstore of Compact Discs. We had to create a great design and then integrate it to the site. The site is based on CRELoaded.</p>
-    </div>
-
-  </div>
-</section>
-
-<!-- ── PRODUCTS ── -->
-<section id="products">
-  <div class="container">
-    <p class="section-label">Products &amp; Templates</p>
-    <h2>Stuff for Sale</h2>
-    <p>Wadaan built and sold turnkey website packages, logo packages, e-commerce templates, and pre-configured (modded) osCommerce carts.</p>
-
-    <div class="products-grid">
-      <div class="product-block">
-        <h3>Full Websites (Template + Script)</h3>
-        <ul>
-          <li>Luggage Store</li>
-          <li>Computer Shop</li>
-          <li>Rose &amp; Flower Gallery</li>
-          <li>Umbrella Shop</li>
-          <li>Apparel Shop</li>
-          <li>Hospital Website (+ CMS)</li>
-        </ul>
+<!-- ═══ SECTION 03: NEWS ═══ -->
+<div id="news" style="border-bottom: 1px solid #1e1c18;">
+  <div class="section-pad" style="max-width: 1200px; margin: 0 auto; padding: 0 48px;">
+    <div style="display: flex; align-items: stretch; border-bottom: 1px solid #1e1c18;">
+      <div class="section-gutter" style="width: 120px; flex-shrink: 0; border-right: 1px solid #1e1c18; padding: 24px 0; display: flex; align-items: flex-start;">
+        <span style="font-family: 'Bebas Neue', sans-serif; font-size: 72px; color: #1a1815; letter-spacing: 2px; line-height: 1;">03</span>
       </div>
-
-      <div class="product-block">
-        <h3>E-Commerce Templates (osCommerce)</h3>
-        <ul>
-          <li>E-Commerce Jewellery Template</li>
-          <li>E-Commerce Templates 1–8</li>
-          <li>Custom modded osCommerce carts</li>
-        </ul>
-      </div>
-
-      <div class="product-block">
-        <h3>Logos &amp; Banners</h3>
-        <ul>
-          <li>Custom logo design</li>
-          <li>Site banners</li>
-          <li>Button sets</li>
-        </ul>
-      </div>
-
-      <div class="product-block">
-        <h3>Modded osCommerce Features</h3>
-        <ul>
-          <li>WYSIWYG HTML Editor for Admin</li>
-          <li>Credit Class / Gift Vouchers / Coupons</li>
-          <li>Admin With Access Levels</li>
-          <li>Easy Populate, OSC-Affiliate</li>
-          <li>PayPal, EFSnet, GeoTrust/SkipJack, PayBox</li>
-          <li>UPS, USPS, FedEx shipping modules</li>
-          <li>News Desk, FAQ Desk, Wish List</li>
-        </ul>
+      <div style="flex: 1; padding: 24px 0 24px 32px; display: flex; align-items: center; gap: 16px;">
+        <span style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: #e8a000; letter-spacing: 5px;">NEWS &amp; BLOG</span>
+        <div style="flex: 1; height: 1px; background: linear-gradient(to right, #e8a00040, transparent);"></div>
       </div>
     </div>
-
-    <!-- Tech stack -->
-    <p style="margin-top: 36px;" class="section-label">Technology Stack</p>
-    <div class="tech-pills">
-      <span class="tech-pill">PHP</span>
-      <span class="tech-pill">MySQL</span>
-      <span class="tech-pill">HTML / CSS</span>
-      <span class="tech-pill">JavaScript</span>
-      <span class="tech-pill">Flash</span>
-      <span class="tech-pill">Photoshop</span>
-      <span class="tech-pill">Fireworks</span>
-      <span class="tech-pill">osCommerce</span>
-      <span class="tech-pill">ZenCart</span>
-      <span class="tech-pill">osCMax</span>
-      <span class="tech-pill">CRELoaded</span>
-      <span class="tech-pill">X-Cart</span>
-      <span class="tech-pill">CubeCart</span>
-      <span class="tech-pill">Mambo / Joomla</span>
-      <span class="tech-pill">Drupal</span>
-      <span class="tech-pill">Xoops</span>
-      <span class="tech-pill">Plone</span>
-      <span class="tech-pill">Typo3</span>
-      <span class="tech-pill">W-CMS (custom)</span>
-      <span class="tech-pill">PHP Auction</span>
-      <span class="tech-pill">Open Reality</span>
-    </div>
-  </div>
-</section>
-
-<!-- ── CONTACT ── -->
-<section id="contact">
-  <div class="container">
-    <p class="section-label">Get in Touch (archived)</p>
-    <h2>Contact</h2>
-    <p>Contact details as they appeared on wadaan.net in 2007.</p>
-
-    <div class="contact-block">
-      <div class="contact-field">
-        <p class="contact-label">Organisation</p>
-        <p class="contact-value">Wadaan – The Web Development Network</p>
-      </div>
-      <div class="contact-field">
-        <p class="contact-label">Location</p>
-        <p class="contact-value">Västerås, Västmanland<br>Sweden</p>
-      </div>
-      <div class="contact-field">
-        <p class="contact-label">Email (archived)</p>
-        <p class="contact-value">info [at] wadaan [dot] net</p>
-      </div>
-      <div class="contact-field">
-        <p class="contact-label">Phone (archived)</p>
-        <p class="contact-value">+46-76-2915571</p>
+    <div style="display: flex;">
+      <div class="section-gutter" style="width: 120px; flex-shrink: 0; border-right: 1px solid #1e1c18;"></div>
+      <div class="section-content" style="flex: 1; padding: 48px 0 48px 32px;">
+        <h2 style="font-family: 'Bebas Neue', sans-serif; font-size: 64px; color: #f0ede6; margin: 0 0 40px; line-height: 0.9; letter-spacing: 2px;">TRANSMISSIONS</h2>
+        <div style="display: flex; flex-direction: column;">
+          <div class="news-grid" style="display: grid; grid-template-columns: 140px 1fr; border-bottom: 1px solid #1a1815; padding: 24px 0; gap: 32px;"><div style="font-family:'IBM Plex Mono',monospace; font-size:9px; color:#e8a000; line-height:1.8;">MON 12 APR<br/>2004<br/><span style="color:#2a2825;">———</span><br/><span style="color:#3a3830;">FOUNDING</span></div><div><div style="font-family:'Bebas Neue',sans-serif; font-size:24px; color:#f0ede6; margin-bottom:10px; letter-spacing:1px;">WELCOME TO WADAAN…THE WEB DEVELOPMENT NETWORK!</div><p style="font-family:'Cormorant Garamond',serif; font-size:16px; font-weight:300; color:#8a8278; line-height:1.75; margin:0;">Equipped with creative minds, fast fingertips, and the latest technology, Wadaan takes great pride in diverse and exciting designs and dynamic web applications.</p></div></div>
+          <div class="news-grid" style="display: grid; grid-template-columns: 140px 1fr; border-bottom: 1px solid #1a1815; padding: 24px 0; gap: 32px;"><div style="font-family:'IBM Plex Mono',monospace; font-size:9px; color:#e8a000; line-height:1.8;">FRI 25 MAR<br/>2005<br/><span style="color:#2a2825;">———</span><br/><span style="color:#3a3830;">E-COMMERCE</span></div><div><div style="font-family:'Bebas Neue',sans-serif; font-size:24px; color:#f0ede6; margin-bottom:10px; letter-spacing:1px;">TEXAS POKER SUPPLY COMPLETED</div><p style="font-family:'Cormorant Garamond',serif; font-size:16px; font-weight:300; color:#8a8278; line-height:1.75; margin:0 0 10px;">The e-commerce project was completed very rapidly as per the requirements of the client. The client is very satisfied with our quality of work and intends to contact Wadaan for further modifications to his osCommerce-based site.</p><a href="http://www.txpokersupply.com" target="_blank" rel="noopener" style="font-family:'IBM Plex Mono',monospace; font-size:9px; color:#e8a00060; letter-spacing:1px;">www.txpokersupply.com ↗</a></div></div>
+          <div class="news-grid" style="display: grid; grid-template-columns: 140px 1fr; border-bottom: 1px solid #1a1815; padding: 24px 0; gap: 32px;"><div style="font-family:'IBM Plex Mono',monospace; font-size:9px; color:#e8a000; line-height:1.8;">FRI 01 APR<br/>2005<br/><span style="color:#2a2825;">———</span><br/><span style="color:#3a3830;">E-COMMERCE</span></div><div><div style="font-family:'Bebas Neue',sans-serif; font-size:24px; color:#f0ede6; margin-bottom:10px; letter-spacing:1px;">FLORIDA TICKETS IS DONE</div><p style="font-family:'Cormorant Garamond',serif; font-size:16px; font-weight:300; color:#8a8278; line-height:1.75; margin:0 0 10px;">We were assigned the task of applying a template to the vanilla version of osCommerce 2 MS 2.2. Our designer used the image supplied by the client and CSS to make changes. Buttons were also designed by Wadaan.</p><a href="http://www.floridatickets.org" target="_blank" rel="noopener" style="font-family:'IBM Plex Mono',monospace; font-size:9px; color:#e8a00060; letter-spacing:1px;">www.floridatickets.org ↗</a></div></div>
+          <div class="news-grid" style="display: grid; grid-template-columns: 140px 1fr; border-bottom: 1px solid #1a1815; padding: 24px 0; gap: 32px;"><div style="font-family:'IBM Plex Mono',monospace; font-size:9px; color:#e8a000; line-height:1.8;">2005<br/><span style="color:#2a2825;">———</span><br/><span style="color:#3a3830;">INDUSTRY</span></div><div><div style="font-family:'Bebas Neue',sans-serif; font-size:24px; color:#f0ede6; margin-bottom:10px; letter-spacing:1px;">IBM PLEDGES PATENTS TO OPEN SOURCE</div><p style="font-family:'Cormorant Garamond',serif; font-size:16px; font-weight:300; color:#8a8278; line-height:1.75; margin:0;">IBM said it is pledging 500 software patents to developers of open-source software so they can develop without fear. The patents are available to those who abide by the Open Source Initiative (OSI) and use one of 50 OSI-certified licenses.</p></div></div>
+          <div class="news-grid" style="display: grid; grid-template-columns: 140px 1fr; border-bottom: 1px solid #1a1815; padding: 24px 0; gap: 32px;"><div style="font-family:'IBM Plex Mono',monospace; font-size:9px; color:#e8a000; line-height:1.8;">2006<br/><span style="color:#2a2825;">———</span><br/><span style="color:#3a3830;">UPDATE</span></div><div><div style="font-family:'Bebas Neue',sans-serif; font-size:24px; color:#f0ede6; margin-bottom:10px; letter-spacing:1px;">LEATHER VILLA NEW YORK</div><p style="font-family:'Cormorant Garamond',serif; font-size:16px; font-weight:300; color:#8a8278; line-height:1.75; margin:0;">One of our best works so far. Full design and backend provision via osCommerce. Numerous modules installed — WYSIWYG Editor, admin authentication, PayPal, Credit Card, and UPS gateways.</p></div></div>
+          <div class="news-grid" style="display: grid; grid-template-columns: 140px 1fr; padding: 24px 0; gap: 32px;"><div style="font-family:'IBM Plex Mono',monospace; font-size:9px; color:#e8a000; line-height:1.8;">2006<br/><span style="color:#2a2825;">———</span><br/><span style="color:#3a3830;">UPDATES ×3</span></div><div><div style="font-family:'Bebas Neue',sans-serif; font-size:24px; color:#f0ede6; margin-bottom:10px; letter-spacing:1px;">MIDWEST BARGAINS · EXCLUSIVE FCP · WORLD OF CDs</div><p style="font-family:'Cormorant Garamond',serif; font-size:16px; font-weight:300; color:#8a8278; line-height:1.75; margin:0;">Three additional projects completed. Midwest Bargains: full design including logo and banner. Exclusive FCP: complete re-design and bug fixing. World of CDs: great design integrated to a CRELoaded-based webstore.</p></div></div>
+        </div>
       </div>
     </div>
   </div>
-</section>
+</div>
+
+<!-- ═══ SECTION 04: PRODUCTS ═══ -->
+<div id="products" style="border-bottom: 1px solid #1e1c18;">
+  <div class="section-pad" style="max-width: 1200px; margin: 0 auto; padding: 0 48px;">
+    <div style="display: flex; align-items: stretch; border-bottom: 1px solid #1e1c18;">
+      <div class="section-gutter" style="width: 120px; flex-shrink: 0; border-right: 1px solid #1e1c18; padding: 24px 0; display: flex; align-items: flex-start;">
+        <span style="font-family: 'Bebas Neue', sans-serif; font-size: 72px; color: #1a1815; letter-spacing: 2px; line-height: 1;">04</span>
+      </div>
+      <div style="flex: 1; padding: 24px 0 24px 32px; display: flex; align-items: center; gap: 16px;">
+        <span style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: #e8a000; letter-spacing: 5px;">PRODUCTS</span>
+        <div style="flex: 1; height: 1px; background: linear-gradient(to right, #e8a00040, transparent);"></div>
+      </div>
+    </div>
+    <div style="display: flex;">
+      <div class="section-gutter" style="width: 120px; flex-shrink: 0; border-right: 1px solid #1e1c18;"></div>
+      <div class="section-content" style="flex: 1; padding: 48px 0 48px 32px;">
+        <h2 style="font-family: 'Bebas Neue', sans-serif; font-size: 64px; color: #f0ede6; margin: 0 0 12px; line-height: 0.9; letter-spacing: 2px;">STUFF FOR SALE</h2>
+        <p style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: #4a4840; margin: 0 0 40px; line-height: 1.7;">Turnkey packages, templates, logos, and pre-configured osCommerce carts.</p>
+        <div class="products-grid" style="display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 3px; margin-bottom: 40px;">
+          <div style="background: #141210; border: 1px solid #2a2825; padding: 20px 16px;">
+            <div style="font-family: 'IBM Plex Mono', monospace; font-size: 9px; color: #e8a000; letter-spacing: 3px; margin-bottom: 14px; padding-bottom: 10px; border-bottom: 1px solid #2a2825;">FULL SITES</div>
+            <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: #4a4840; line-height: 2.1;"><div>Luggage Store</div><div>Computer Shop</div><div>Rose &amp; Flower Gallery</div><div>Umbrella Shop</div><div>Apparel Shop</div><div>Hospital Website</div></div>
+          </div>
+          <div style="background: #141210; border: 1px solid #2a2825; padding: 20px 16px;">
+            <div style="font-family: 'IBM Plex Mono', monospace; font-size: 9px; color: #e8a000; letter-spacing: 3px; margin-bottom: 14px; padding-bottom: 10px; border-bottom: 1px solid #2a2825;">TEMPLATES</div>
+            <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: #4a4840; line-height: 2.1;"><div>Jewellery Template</div><div>Templates 1–8</div><div>Modded osCommerce</div></div>
+          </div>
+          <div style="background: #141210; border: 1px solid #2a2825; padding: 20px 16px;">
+            <div style="font-family: 'IBM Plex Mono', monospace; font-size: 9px; color: #e8a000; letter-spacing: 3px; margin-bottom: 14px; padding-bottom: 10px; border-bottom: 1px solid #2a2825;">LOGOS</div>
+            <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: #4a4840; line-height: 2.1;"><div>Custom logo design</div><div>Site banners</div><div>Button sets</div></div>
+          </div>
+          <div style="background: #141210; border: 1px solid #2a2825; padding: 20px 16px;">
+            <div style="font-family: 'IBM Plex Mono', monospace; font-size: 9px; color: #e8a000; letter-spacing: 3px; margin-bottom: 14px; padding-bottom: 10px; border-bottom: 1px solid #2a2825;">MODULES</div>
+            <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: #4a4840; line-height: 2.1;"><div>WYSIWYG Editor</div><div>Gift Vouchers</div><div>Access Levels</div><div>PayPal · EFSnet</div><div>UPS · FedEx</div><div>Wish List</div></div>
+          </div>
+        </div>
+        <div style="font-family: 'IBM Plex Mono', monospace; font-size: 9px; color: #e8a000; letter-spacing: 4px; margin-bottom: 16px;">/ STACK</div>
+        <div style="display: flex; flex-wrap: wrap; gap: 6px;">
+          <span style="font-family:'IBM Plex Mono',monospace; font-size:10px; color:#3a3830; border:1px solid #1e1c18; padding:4px 10px; background:#0e0d0b;">PHP</span><span style="font-family:'IBM Plex Mono',monospace; font-size:10px; color:#3a3830; border:1px solid #1e1c18; padding:4px 10px; background:#0e0d0b;">MySQL</span><span style="font-family:'IBM Plex Mono',monospace; font-size:10px; color:#3a3830; border:1px solid #1e1c18; padding:4px 10px; background:#0e0d0b;">HTML/CSS</span><span style="font-family:'IBM Plex Mono',monospace; font-size:10px; color:#3a3830; border:1px solid #1e1c18; padding:4px 10px; background:#0e0d0b;">JavaScript</span><span style="font-family:'IBM Plex Mono',monospace; font-size:10px; color:#3a3830; border:1px solid #1e1c18; padding:4px 10px; background:#0e0d0b;">Flash</span><span style="font-family:'IBM Plex Mono',monospace; font-size:10px; color:#3a3830; border:1px solid #1e1c18; padding:4px 10px; background:#0e0d0b;">Photoshop</span><span style="font-family:'IBM Plex Mono',monospace; font-size:10px; color:#3a3830; border:1px solid #1e1c18; padding:4px 10px; background:#0e0d0b;">Fireworks</span><span style="font-family:'IBM Plex Mono',monospace; font-size:10px; color:#3a3830; border:1px solid #1e1c18; padding:4px 10px; background:#0e0d0b;">osCommerce</span><span style="font-family:'IBM Plex Mono',monospace; font-size:10px; color:#3a3830; border:1px solid #1e1c18; padding:4px 10px; background:#0e0d0b;">ZenCart</span><span style="font-family:'IBM Plex Mono',monospace; font-size:10px; color:#3a3830; border:1px solid #1e1c18; padding:4px 10px; background:#0e0d0b;">osCMax</span><span style="font-family:'IBM Plex Mono',monospace; font-size:10px; color:#3a3830; border:1px solid #1e1c18; padding:4px 10px; background:#0e0d0b;">CRELoaded</span><span style="font-family:'IBM Plex Mono',monospace; font-size:10px; color:#3a3830; border:1px solid #1e1c18; padding:4px 10px; background:#0e0d0b;">X-Cart</span><span style="font-family:'IBM Plex Mono',monospace; font-size:10px; color:#3a3830; border:1px solid #1e1c18; padding:4px 10px; background:#0e0d0b;">CubeCart</span><span style="font-family:'IBM Plex Mono',monospace; font-size:10px; color:#3a3830; border:1px solid #1e1c18; padding:4px 10px; background:#0e0d0b;">Mambo/Joomla</span><span style="font-family:'IBM Plex Mono',monospace; font-size:10px; color:#3a3830; border:1px solid #1e1c18; padding:4px 10px; background:#0e0d0b;">Drupal</span><span style="font-family:'IBM Plex Mono',monospace; font-size:10px; color:#3a3830; border:1px solid #1e1c18; padding:4px 10px; background:#0e0d0b;">Xoops</span><span style="font-family:'IBM Plex Mono',monospace; font-size:10px; color:#3a3830; border:1px solid #1e1c18; padding:4px 10px; background:#0e0d0b;">Plone</span><span style="font-family:'IBM Plex Mono',monospace; font-size:10px; color:#3a3830; border:1px solid #1e1c18; padding:4px 10px; background:#0e0d0b;">Typo3</span><span style="font-family:'IBM Plex Mono',monospace; font-size:10px; color:#e8a000; border:1px solid #e8a00030; padding:4px 10px; background:#1a1408;">W-CMS</span><span style="font-family:'IBM Plex Mono',monospace; font-size:10px; color:#3a3830; border:1px solid #1e1c18; padding:4px 10px; background:#0e0d0b;">PHP Auction</span><span style="font-family:'IBM Plex Mono',monospace; font-size:10px; color:#3a3830; border:1px solid #1e1c18; padding:4px 10px; background:#0e0d0b;">Open Reality</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ SECTION 05: CONTACT ═══ -->
+<div id="contact">
+  <div class="section-pad" style="max-width: 1200px; margin: 0 auto; padding: 0 48px;">
+    <div style="display: flex; align-items: stretch; border-bottom: 1px solid #1e1c18;">
+      <div class="section-gutter" style="width: 120px; flex-shrink: 0; border-right: 1px solid #1e1c18; padding: 24px 0; display: flex; align-items: flex-start;">
+        <span style="font-family: 'Bebas Neue', sans-serif; font-size: 72px; color: #1a1815; letter-spacing: 2px; line-height: 1;">05</span>
+      </div>
+      <div style="flex: 1; padding: 24px 0 24px 32px; display: flex; align-items: center; gap: 16px;">
+        <span style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: #e8a000; letter-spacing: 5px;">CONTACT</span>
+        <div style="flex: 1; height: 1px; background: linear-gradient(to right, #e8a00040, transparent);"></div>
+      </div>
+    </div>
+    <div style="display: flex;">
+      <div class="section-gutter" style="width: 120px; flex-shrink: 0; border-right: 1px solid #1e1c18;"></div>
+      <div class="section-content" style="flex: 1; padding: 48px 0 72px 32px;">
+        <h2 style="font-family: 'Bebas Neue', sans-serif; font-size: 64px; color: #f0ede6; margin: 0 0 8px; line-height: 0.9; letter-spacing: 2px;">GET IN TOUCH</h2>
+        <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: #3a3830; margin: 0 0 40px; font-style: italic;">Contact details as they appeared on wadaan.net in 2007.</div>
+        <div class="contact-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 3px; max-width: 640px; margin-bottom: 48px;">
+          <div style="background:#141210; border:1px solid #2a2825; padding:16px 20px;"><div style="font-family:'IBM Plex Mono',monospace; font-size:8px; color:#e8a000; letter-spacing:2px; margin-bottom:8px;">ORGANISATION</div><div style="font-family:'IBM Plex Mono',monospace; font-size:11px; color:#c0b8a8; line-height:1.5;">Wadaan – The Web Development Network</div></div>
+          <div style="background:#141210; border:1px solid #2a2825; padding:16px 20px;"><div style="font-family:'IBM Plex Mono',monospace; font-size:8px; color:#e8a000; letter-spacing:2px; margin-bottom:8px;">LOCATION</div><div style="font-family:'IBM Plex Mono',monospace; font-size:11px; color:#c0b8a8;">Västerås, Västmanland<br/>Sweden</div></div>
+          <div style="background:#141210; border:1px solid #2a2825; padding:16px 20px;"><div style="font-family:'IBM Plex Mono',monospace; font-size:8px; color:#e8a000; letter-spacing:2px; margin-bottom:8px;">EMAIL [ARCHIVED]</div><div style="font-family:'IBM Plex Mono',monospace; font-size:11px; color:#e8a00070;">info [at] wadaan [dot] net</div></div>
+          <div style="background:#141210; border:1px solid #2a2825; padding:16px 20px;"><div style="font-family:'IBM Plex Mono',monospace; font-size:8px; color:#e8a000; letter-spacing:2px; margin-bottom:8px;">PHONE [ARCHIVED]</div><div style="font-family:'IBM Plex Mono',monospace; font-size:11px; color:#e8a00070;">+46-76-2915571</div></div>
+        </div>
+        <div style="display: inline-flex; align-items: center; gap: 24px; border: 1px solid #2a2825; padding: 16px 24px; background: #0e0d0b;">
+          <div>
+            <div style="font-family: 'IBM Plex Mono', monospace; font-size: 8px; color: #e8a000; letter-spacing: 3px; margin-bottom: 8px;">VISITOR LOG</div>
+            <div style="font-family: 'Bebas Neue', sans-serif; font-size: 48px; color: #e8a000; letter-spacing: 4px; line-height: 1;">4,821</div>
+          </div>
+          <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: #2a2825; line-height: 1.8;">visitors recorded<br/>before archival</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 <!-- Footer -->
-<footer>
-  <p><strong>Wadaan – The Web Development Network</strong></p>
-  <p style="margin-top:6px;">Active 2004–2007 &nbsp;·&nbsp; Västerås, Sweden</p>
-  <p class="wayback-note">
-    Content recovered from the Internet Archive Wayback Machine.<br>
-    Original site: <a href="https://web.archive.org/web/2006*/http://wadaan.net/" target="_blank" rel="noopener">web.archive.org → wadaan.net</a>
-  </p>
-</footer>
+<div class="footer-pad" style="background: #070605; border-top: 2px solid #e8a000; padding: 32px 48px;">
+  <div style="max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px;">
+    <div style="display: flex; align-items: baseline; gap: 16px;">
+      <span style="font-family: 'Bebas Neue', sans-serif; font-size: 32px; color: #e8a000; letter-spacing: 4px;">WADAAN</span>
+      <span style="font-family: 'IBM Plex Mono', monospace; font-size: 9px; color: #2a2825; letter-spacing: 2px;">ACTIVE 2004–2007 · VÄSTERÅS, SWEDEN</span>
+    </div>
+    <div style="font-family: 'IBM Plex Mono', monospace; font-size: 9px; color: #2a2825; letter-spacing: 1px; text-align: right; line-height: 1.8;">
+      Content recovered from the Internet Archive Wayback Machine<br/>
+      <a href="https://web.archive.org" target="_blank" rel="noopener" style="color: #e8a00030; text-decoration: none; letter-spacing: 1px;">web.archive.org → wadaan.net</a>
+    </div>
+  </div>
+</div>
 
 </body>
 </html>
