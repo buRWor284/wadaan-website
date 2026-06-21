@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wadaan – The Web Development Network | Archive 2004–2007</title>
+  <style>
+    /* ── Reset & base ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink:       #1a1a1a;
+      --muted:     #555;
+      --faint:     #888;
+      --border:    #ddd;
+      --bg:        #faf9f7;
+      --card:      #ffffff;
+      --accent:    #1a4f8a;   /* deep navy – period-appropriate corporate blue */
+      --accent2:   #c0392b;   /* warm red for dates / highlights */
+      --tag-bg:    #eef3f9;
+      --tag-txt:   #1a4f8a;
+      --mono:      "Courier New", Courier, monospace;
+      --sans:      Georgia, "Times New Roman", serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--sans);
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.7;
+      font-size: 17px;
+    }
+
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* ── Archive ribbon ── */
+    .archive-ribbon {
+      background: #2c2c2c;
+      color: #ccc;
+      text-align: center;
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      padding: 8px 16px;
+      font-family: var(--mono);
+    }
+    .archive-ribbon strong { color: #e8e8e8; }
+
+    /* ── Header ── */
+    header {
+      background: var(--accent);
+      color: #fff;
+      padding: 48px 24px 40px;
+      text-align: center;
+    }
+
+    .site-name {
+      font-size: clamp(28px, 5vw, 52px);
+      font-weight: normal;
+      letter-spacing: -0.5px;
+      line-height: 1.15;
+    }
+
+    .site-name span {
+      display: block;
+      font-size: 0.45em;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.65);
+      margin-top: 6px;
+    }
+
+    .header-meta {
+      margin-top: 18px;
+      font-size: 14px;
+      color: rgba(255,255,255,0.6);
+      letter-spacing: 0.05em;
+    }
+
+    .header-tagline {
+      margin-top: 10px;
+      font-size: 17px;
+      color: rgba(255,255,255,0.85);
+      font-style: italic;
+      max-width: 620px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* ── Nav ── */
+    nav {
+      background: #163d6e;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0;
+    }
+
+    nav a {
+      color: rgba(255,255,255,0.75);
+      font-family: sans-serif;
+      font-size: 13px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 12px 22px;
+      display: block;
+    }
+
+    nav a:hover {
+      background: rgba(255,255,255,0.08);
+      color: #fff;
+      text-decoration: none;
+    }
+
+    /* ── Layout ── */
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    section {
+      padding: 56px 0 48px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    section:last-of-type { border-bottom: none; }
+
+    .section-label {
+      font-family: sans-serif;
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent2);
+      margin-bottom: 10px;
+    }
+
+    h2 {
+      font-size: clamp(20px, 3vw, 28px);
+      font-weight: normal;
+      color: var(--accent);
+      margin-bottom: 20px;
+      line-height: 1.25;
+    }
+
+    h3 {
+      font-size: 18px;
+      font-weight: normal;
+      color: var(--ink);
+      margin-bottom: 8px;
+    }
+
+    p { margin-bottom: 14px; color: var(--ink); }
+    p:last-child { margin-bottom: 0; }
+
+    /* ── About section ── */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      margin-top: 28px;
+    }
+
+    @media (max-width: 600px) {
+      .about-grid { grid-template-columns: 1fr; }
+    }
+
+    .about-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 24px;
+    }
+
+    .about-card h3 {
+      font-family: sans-serif;
+      font-size: 12px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--faint);
+      margin-bottom: 12px;
+    }
+
+    .about-card ul {
+      padding-left: 18px;
+    }
+
+    .about-card ul li {
+      margin-bottom: 5px;
+      font-size: 15px;
+    }
+
+    .founding-quote {
+      margin-top: 24px;
+      border-left: 3px solid var(--accent);
+      padding: 16px 20px;
+      background: var(--tag-bg);
+      font-style: italic;
+      color: var(--ink);
+      font-size: 16px;
+    }
+
+    .founding-quote cite {
+      display: block;
+      margin-top: 8px;
+      font-size: 12px;
+      font-style: normal;
+      color: var(--faint);
+      font-family: sans-serif;
+      letter-spacing: 0.05em;
+    }
+
+    /* ── Portfolio ── */
+    .portfolio-intro { margin-bottom: 28px; font-size: 15px; color: var(--muted); }
+
+    .portfolio-category { margin-bottom: 36px; }
+
+    .cat-header {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      margin-bottom: 14px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .cat-header h3 {
+      font-size: 16px;
+      color: var(--ink);
+    }
+
+    .cat-count {
+      font-family: sans-serif;
+      font-size: 11px;
+      color: var(--faint);
+    }
+
+    .client-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .client-tag {
+      background: var(--tag-bg);
+      color: var(--tag-txt);
+      font-family: sans-serif;
+      font-size: 13px;
+      padding: 4px 11px;
+      border-radius: 3px;
+      border: 1px solid #c8d9ef;
+    }
+
+    /* ── Blog / News ── */
+    .post {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 28px 28px 24px;
+      margin-bottom: 20px;
+    }
+
+    .post-date {
+      font-family: sans-serif;
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent2);
+      margin-bottom: 8px;
+    }
+
+    .post h3 {
+      font-size: 20px;
+      color: var(--accent);
+      margin-bottom: 12px;
+    }
+
+    .post p { font-size: 15px; color: var(--muted); }
+
+    .post-url {
+      display: inline-block;
+      margin-top: 10px;
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--faint);
+    }
+
+    /* ── Products / Templates ── */
+    .products-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-top: 24px;
+    }
+
+    @media (max-width: 600px) {
+      .products-grid { grid-template-columns: 1fr; }
+    }
+
+    .product-block {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 20px 22px;
+    }
+
+    .product-block h3 {
+      font-family: sans-serif;
+      font-size: 13px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 10px;
+    }
+
+    .product-block ul {
+      padding-left: 16px;
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    .product-block ul li { margin-bottom: 4px; }
+
+    /* ── Tech stack ── */
+    .tech-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 20px;
+    }
+
+    .tech-pill {
+      background: #2c2c2c;
+      color: #d4d4d4;
+      font-family: var(--mono);
+      font-size: 12px;
+      padding: 4px 11px;
+      border-radius: 3px;
+    }
+
+    /* ── Contact ── */
+    .contact-block {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 28px;
+      margin-top: 24px;
+      display: flex;
+      gap: 48px;
+      flex-wrap: wrap;
+    }
+
+    .contact-field {
+      font-family: sans-serif;
+    }
+
+    .contact-label {
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--faint);
+      margin-bottom: 4px;
+    }
+
+    .contact-value {
+      font-size: 15px;
+      color: var(--ink);
+    }
+
+    /* ── Timeline ── */
+    .timeline { margin-top: 24px; }
+
+    .timeline-item {
+      display: flex;
+      gap: 20px;
+      margin-bottom: 20px;
+    }
+
+    .timeline-year {
+      font-family: var(--mono);
+      font-size: 13px;
+      color: var(--accent2);
+      white-space: nowrap;
+      padding-top: 2px;
+      min-width: 50px;
+    }
+
+    .timeline-text {
+      font-size: 15px;
+      color: var(--muted);
+    }
+
+    /* ── Footer ── */
+    footer {
+      background: #1a1a1a;
+      color: #555;
+      text-align: center;
+      padding: 36px 24px;
+      font-family: sans-serif;
+      font-size: 12px;
+      letter-spacing: 0.05em;
+    }
+
+    footer strong { color: #888; }
+
+    .wayback-note {
+      margin-top: 12px;
+      font-size: 11px;
+      color: #444;
+    }
+
+    .wayback-note a { color: #666; }
+  </style>
+</head>
+<body>
+
+<!-- Archive ribbon -->
+<div class="archive-ribbon">
+  ⊡ &nbsp;<strong>ARCHIVE</strong> &nbsp;·&nbsp; This site preserves wadaan.net as it existed between 2004 and 2007 &nbsp;·&nbsp; Recovered via the Wayback Machine
+</div>
+
+<!-- Header -->
+<header>
+  <div class="site-name">
+    Wadaan
+    <span>The Web Development Network</span>
+  </div>
+  <p class="header-tagline">Exquisite Web Development Solutionz @ Affordable Prices</p>
+  <p class="header-meta">Västerås, Sweden &nbsp;·&nbsp; Founded April 2004 &nbsp;·&nbsp; Active 2004–2007</p>
+</header>
+
+<!-- Navigation -->
+<nav>
+  <a href="#about">About</a>
+  <a href="#portfolio">Portfolio</a>
+  <a href="#blog">News &amp; Blog</a>
+  <a href="#products">Products</a>
+  <a href="#contact">Contact</a>
+</nav>
+
+<!-- ── ABOUT ── -->
+<section id="about">
+  <div class="container">
+    <p class="section-label">Who We Were</p>
+    <h2>About Wadaan</h2>
+
+    <p>Wadaan – The Web Development Network was a professional web design and development organisation based in Västerås, Sweden, providing web solutions to businesses all over the world. We created and managed websites that were not only aesthetically pleasing but also functionally superior.</p>
+
+    <p>Whatever clients were looking for — redesigning an existing website, from-scratch web application development, SEO, eCommerce, hosting or domain registration — Wadaan was there to help. For two years we built a reputation for creating a positive return on investment for our clients.</p>
+
+    <blockquote class="founding-quote">
+      "Equipped with creative minds, fast fingertips, and the latest technology, Wadaan takes great pride in diverse and exciting designs and dynamic web applications. From simple text &amp; graphics to more intricate designs, logos, and database-driven websites, Wadaan provides amazing services at very affordable prices."
+      <cite>— Welcome post, April 12, 2004 (founding day)</cite>
+    </blockquote>
+
+    <div class="about-grid">
+      <div class="about-card">
+        <h3>Services Offered</h3>
+        <ul>
+          <li>Website Design &amp; Development</li>
+          <li>Fully functional e-commerce sites</li>
+          <li>Website Maintenance</li>
+          <li>Content Management Solutions</li>
+          <li>Email Management Solutions</li>
+          <li>Project Management</li>
+          <li>Open Source Application Services</li>
+          <li>Custom Graphics Design</li>
+          <li>Multimedia &amp; Flash Design</li>
+          <li>Hosting &amp; Domain Registration</li>
+          <li>Search Engine Optimisation (SEO)</li>
+        </ul>
+      </div>
+      <div class="about-card">
+        <h3>Timeline</h3>
+        <div class="timeline">
+          <div class="timeline-item">
+            <span class="timeline-year">Apr 2004</span>
+            <span class="timeline-text">Wadaan founded. First "Welcome" post published.</span>
+          </div>
+          <div class="timeline-item">
+            <span class="timeline-year">Mar 2005</span>
+            <span class="timeline-text">Texas Poker Supply — first documented completed client project.</span>
+          </div>
+          <div class="timeline-item">
+            <span class="timeline-year">Apr 2005</span>
+            <span class="timeline-text">Florida Tickets e-commerce site delivered.</span>
+          </div>
+          <div class="timeline-item">
+            <span class="timeline-year">Late 2005</span>
+            <span class="timeline-text">Portfolio grows to 35+ clients across e-commerce, CMS, and static sites.</span>
+          </div>
+          <div class="timeline-item">
+            <span class="timeline-year">2006</span>
+            <span class="timeline-text">Site relaunched with updated nav ("Other Works"). New portfolio entries: Leather Villa NY, Midwest Bargains, World of CDs.</span>
+          </div>
+          <div class="timeline-item">
+            <span class="timeline-year">2007</span>
+            <span class="timeline-text">Last known activity. Site continues to serve clients globally from Västerås, Sweden.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── PORTFOLIO ── -->
+<section id="portfolio">
+  <div class="container">
+    <p class="section-label">Client Work</p>
+    <h2>Portfolio</h2>
+    <p class="portfolio-intro">Wadaan specialised in design, custom programming, and administration of open-source web applications. The portfolio below represents client work captured from 2005–2006. Technologies used include osCommerce, ZenCart, CRELoaded, Mambo, Drupal, Xoops, Plone, Typo3, and Wadaan's own W-CMS.</p>
+
+    <div class="portfolio-category">
+      <div class="cat-header">
+        <h3>E-Commerce Websites</h3>
+        <span class="cat-count">21 clients</span>
+      </div>
+      <div class="client-grid">
+        <span class="client-tag">Silver Lake Publications</span>
+        <span class="client-tag">Zone 9 Plants</span>
+        <span class="client-tag">Angel Stop</span>
+        <span class="client-tag">The Silver Penny Mall</span>
+        <span class="client-tag">Structured Style</span>
+        <span class="client-tag">Blue Lapis</span>
+        <span class="client-tag">Flexxware Golf</span>
+        <span class="client-tag">The Beef Jerky Shop</span>
+        <span class="client-tag">The Texas Poker Supply</span>
+        <span class="client-tag">Florida Tickets</span>
+        <span class="client-tag">A One Watches</span>
+        <span class="client-tag">Nintendo SystemsGCN</span>
+        <span class="client-tag">Sounds Sublime Shop</span>
+        <span class="client-tag">1-800 Bakery</span>
+        <span class="client-tag">Empress Tea Company</span>
+        <span class="client-tag">Audio Cubes</span>
+        <span class="client-tag">Neustrafe</span>
+        <span class="client-tag">Eflein Kosmetik</span>
+        <span class="client-tag">Today's Market Place</span>
+        <span class="client-tag">Lori Jean</span>
+        <span class="client-tag">World of CDs</span>
+      </div>
+    </div>
+
+    <div class="portfolio-category">
+      <div class="cat-header">
+        <h3>Static Websites</h3>
+        <span class="cat-count">9 clients</span>
+      </div>
+      <div class="client-grid">
+        <span class="client-tag">A One Stones</span>
+        <span class="client-tag">Aryana Site</span>
+        <span class="client-tag">The Site for Islamic Info</span>
+        <span class="client-tag">NWFP Wildlife Department</span>
+        <span class="client-tag">The Boulevard Condos</span>
+        <span class="client-tag">Plastic Hand Surgery</span>
+        <span class="client-tag">DPK Online</span>
+        <span class="client-tag">RL Spring</span>
+        <span class="client-tag">Frontier Archaeology</span>
+      </div>
+    </div>
+
+    <div class="portfolio-category">
+      <div class="cat-header">
+        <h3>Real Estate Websites</h3>
+        <span class="cat-count">3 clients</span>
+      </div>
+      <div class="client-grid">
+        <span class="client-tag">Rent O Maha</span>
+        <span class="client-tag">Roatan Honduras Real Estate</span>
+        <span class="client-tag">Roatan Caribbean</span>
+      </div>
+    </div>
+
+    <div class="portfolio-category">
+      <div class="cat-header">
+        <h3>CMS-Based Websites</h3>
+        <span class="cat-count">12 clients</span>
+      </div>
+      <div class="client-grid">
+        <span class="client-tag">MIO Watch</span>
+        <span class="client-tag">The Pashtun Foundation (W-CMS)</span>
+        <span class="client-tag">University of Ottawa, Canada</span>
+        <span class="client-tag">Gallob</span>
+        <span class="client-tag">News Central Asia</span>
+        <span class="client-tag">Water and Stone</span>
+        <span class="client-tag">North West HIV Physicians Health Care Network</span>
+        <span class="client-tag">Afghan Tribe Jewelry (W-CMS)</span>
+        <span class="client-tag">Chill Out BU</span>
+        <span class="client-tag">Solar Weekend</span>
+        <span class="client-tag">Airline Pilot Central</span>
+        <span class="client-tag">Zelda Universe</span>
+      </div>
+    </div>
+
+    <div class="portfolio-category">
+      <div class="cat-header">
+        <h3>Later Projects (2006)</h3>
+        <span class="cat-count">4 clients</span>
+      </div>
+      <div class="client-grid">
+        <span class="client-tag">Leather Villa New York</span>
+        <span class="client-tag">Midwest Bargains</span>
+        <span class="client-tag">Exclusive FCP</span>
+        <span class="client-tag">World of CDs (CRELoaded)</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── BLOG / NEWS ── -->
+<section id="blog">
+  <div class="container">
+    <p class="section-label">Writing &amp; Updates</p>
+    <h2>News &amp; Blog</h2>
+
+    <div class="post">
+      <p class="post-date">Monday, 12 April 2004 — Founding Post</p>
+      <h3>Welcome to Wadaan…The Web Development Network!</h3>
+      <p>Equipped with creative minds, fast fingertips, and the latest technology, Wadaan takes great pride in diverse and exciting designs and dynamic web applications. From simple text &amp; graphics to more intricate designs, logos, and database-driven websites, Wadaan provides amazing services at very affordable prices.</p>
+    </div>
+
+    <div class="post">
+      <p class="post-date">Friday, 25 March 2005</p>
+      <h3>E-commerce Website 'Texas Poker Supply' completed</h3>
+      <p>The e-commerce project was completed very rapidly as per the requirements of the client. The client is very satisfied with our quality of work and intends to contact Wadaan for further modifications to his osCommerce-based site in the near future.</p>
+      <span class="post-url">www.txpokersupply.com</span>
+    </div>
+
+    <div class="post">
+      <p class="post-date">Friday, 01 April 2005</p>
+      <h3>E-Commerce Website 'Florida Tickets' is Done</h3>
+      <p>This website was quite a simple one. We were assigned the task of applying a template to the vanilla version of osCommerce 2 MS 2.2. The client didn't have any PSD or HTML files. Our designer used the image supplied by the client and CSS to make changes. Buttons were also designed by Wadaan. Some other small changes were also made to the site.</p>
+      <span class="post-url">www.floridatickets.org</span>
+    </div>
+
+    <div class="post">
+      <p class="post-date">2005 — News</p>
+      <h3>IBM Pledges Patents to Open Source</h3>
+      <p>IBM said it is pledging 500 software patents to developers of open-source software so they can develop without fear. The patents are available to those who abide by the Open Source Initiative (OSI) and use one of 50 OSI-certified licenses.</p>
+    </div>
+
+    <div class="post">
+      <p class="post-date">2006 — Portfolio Update</p>
+      <h3>Leather Villa New York</h3>
+      <p>One of our best works so far. Wadaan's job was the full design and backend provision and configuration for this site. osCommerce was used to set up the backend e-commerce script. The website has numerous great modules installed — a good admin authentication system, a Rich Text (WYSIWYG) Editor, and payment/shipping gateways including PayPal, Credit Card, and UPS.</p>
+    </div>
+
+    <div class="post">
+      <p class="post-date">2006 — Portfolio Update</p>
+      <h3>Midwest Bargains</h3>
+      <p>A great website! Wadaan's task was to create a good design including a logo and a banner.</p>
+    </div>
+
+    <div class="post">
+      <p class="post-date">2006 — Portfolio Update</p>
+      <h3>Exclusive FCP</h3>
+      <p>Complete re-design of the site and fixing of some bugs was the task.</p>
+    </div>
+
+    <div class="post">
+      <p class="post-date">2006 — Portfolio Update</p>
+      <h3>World of CDs</h3>
+      <p>A cool-looking webstore of Compact Discs. We had to create a great design and then integrate it to the site. The site is based on CRELoaded.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── PRODUCTS ── -->
+<section id="products">
+  <div class="container">
+    <p class="section-label">Products &amp; Templates</p>
+    <h2>Stuff for Sale</h2>
+    <p>Wadaan built and sold turnkey website packages, logo packages, e-commerce templates, and pre-configured (modded) osCommerce carts.</p>
+
+    <div class="products-grid">
+      <div class="product-block">
+        <h3>Full Websites (Template + Script)</h3>
+        <ul>
+          <li>Luggage Store</li>
+          <li>Computer Shop</li>
+          <li>Rose &amp; Flower Gallery</li>
+          <li>Umbrella Shop</li>
+          <li>Apparel Shop</li>
+          <li>Hospital Website (+ CMS)</li>
+        </ul>
+      </div>
+
+      <div class="product-block">
+        <h3>E-Commerce Templates (osCommerce)</h3>
+        <ul>
+          <li>E-Commerce Jewellery Template</li>
+          <li>E-Commerce Templates 1–8</li>
+          <li>Custom modded osCommerce carts</li>
+        </ul>
+      </div>
+
+      <div class="product-block">
+        <h3>Logos &amp; Banners</h3>
+        <ul>
+          <li>Custom logo design</li>
+          <li>Site banners</li>
+          <li>Button sets</li>
+        </ul>
+      </div>
+
+      <div class="product-block">
+        <h3>Modded osCommerce Features</h3>
+        <ul>
+          <li>WYSIWYG HTML Editor for Admin</li>
+          <li>Credit Class / Gift Vouchers / Coupons</li>
+          <li>Admin With Access Levels</li>
+          <li>Easy Populate, OSC-Affiliate</li>
+          <li>PayPal, EFSnet, GeoTrust/SkipJack, PayBox</li>
+          <li>UPS, USPS, FedEx shipping modules</li>
+          <li>News Desk, FAQ Desk, Wish List</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Tech stack -->
+    <p style="margin-top: 36px;" class="section-label">Technology Stack</p>
+    <div class="tech-pills">
+      <span class="tech-pill">PHP</span>
+      <span class="tech-pill">MySQL</span>
+      <span class="tech-pill">HTML / CSS</span>
+      <span class="tech-pill">JavaScript</span>
+      <span class="tech-pill">Flash</span>
+      <span class="tech-pill">Photoshop</span>
+      <span class="tech-pill">Fireworks</span>
+      <span class="tech-pill">osCommerce</span>
+      <span class="tech-pill">ZenCart</span>
+      <span class="tech-pill">osCMax</span>
+      <span class="tech-pill">CRELoaded</span>
+      <span class="tech-pill">X-Cart</span>
+      <span class="tech-pill">CubeCart</span>
+      <span class="tech-pill">Mambo / Joomla</span>
+      <span class="tech-pill">Drupal</span>
+      <span class="tech-pill">Xoops</span>
+      <span class="tech-pill">Plone</span>
+      <span class="tech-pill">Typo3</span>
+      <span class="tech-pill">W-CMS (custom)</span>
+      <span class="tech-pill">PHP Auction</span>
+      <span class="tech-pill">Open Reality</span>
+    </div>
+  </div>
+</section>
+
+<!-- ── CONTACT ── -->
+<section id="contact">
+  <div class="container">
+    <p class="section-label">Get in Touch (archived)</p>
+    <h2>Contact</h2>
+    <p>Contact details as they appeared on wadaan.net in 2007.</p>
+
+    <div class="contact-block">
+      <div class="contact-field">
+        <p class="contact-label">Organisation</p>
+        <p class="contact-value">Wadaan – The Web Development Network</p>
+      </div>
+      <div class="contact-field">
+        <p class="contact-label">Location</p>
+        <p class="contact-value">Västerås, Västmanland<br>Sweden</p>
+      </div>
+      <div class="contact-field">
+        <p class="contact-label">Email (archived)</p>
+        <p class="contact-value">info [at] wadaan [dot] net</p>
+      </div>
+      <div class="contact-field">
+        <p class="contact-label">Phone (archived)</p>
+        <p class="contact-value">+46-76-2915571</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <p><strong>Wadaan – The Web Development Network</strong></p>
+  <p style="margin-top:6px;">Active 2004–2007 &nbsp;·&nbsp; Västerås, Sweden</p>
+  <p class="wayback-note">
+    Content recovered from the Internet Archive Wayback Machine.<br>
+    Original site: <a href="https://web.archive.org/web/2006*/http://wadaan.net/" target="_blank" rel="noopener">web.archive.org → wadaan.net</a>
+  </p>
+</footer>
+
+</body>
+</html>
